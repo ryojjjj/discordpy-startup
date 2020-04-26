@@ -6,7 +6,7 @@ list3 = []
 list4 = []
 
 # 自分のBotのアクセストークンに置き換えてください
-TOKEN = 'NzAzNTQwOTk1NDkyNjc1NjM0.XqWkqw.upwefzO99UYYaug_Wt81fCKR5tc'
+TOKEN = 'NzAzNTQwOTk1NDkyNjc1NjM0.XqWoxw._Bidcpry2i-gggJfezGkrwqA2tk'
 
 # 接続に必要なオブジェクトを生成
 client = discord.Client()

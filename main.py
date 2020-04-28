@@ -168,5 +168,4 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
 
   
 
-#client.run(os.getenv('TOKEN'))
-client.run('NzA0NzczODY3OTcyOTg0ODYy.XqiB3w.UHj84d_P2N_F_9sDNF2xElKSMRY')
+client.run(os.getenv('TOKEN'))

@@ -44,10 +44,10 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
     test = discord.Embed(title=about,colour=0x1e90ff)
     #test.add_field(name=f"交流戦\n", value=None, inline=True)
     test = discord.Embed(title=about,colour=0x1e90ff)
-    test.add_field(name=f"21@{cnt} ", value=' '.join(list1), inline=True)
-    test.add_field(name=f"22@{cnt2} ", value=' '.join(list2), inline=True)
-    test.add_field(name=f"23@{cnt3} ", value=' '.join(list3), inline=True)
-    test.add_field(name=f"24@{cnt4} ", value=' '.join(list4), inline=True)
+    test.add_field(name=f"21@{cnt} ", value=' '.join(list1), inline=False)
+    test.add_field(name=f"22@{cnt2} ", value=' '.join(list2), inline=False)
+    test.add_field(name=f"23@{cnt3} ", value=' '.join(list3), inline=False)
+    test.add_field(name=f"24@{cnt4} ", value=' '.join(list4), inline=False)
     msg = await ctx.send(embed=test)
     a = ctx.message.id
     print(a)
@@ -158,10 +158,10 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
                         pass
 
         test = discord.Embed(title=about,colour=0x1e90ff)
-        test.add_field(name=f"21@{cnt} ", value=' '.join(list1), inline=True)
-        test.add_field(name=f"22@{cnt2} ", value=' '.join(list2), inline=True)
-        test.add_field(name=f"23@{cnt3} ", value=' '.join(list3), inline=True)
-        test.add_field(name=f"24@{cnt4} ", value=' '.join(list4), inline=True)
+        test.add_field(name=f"21@{cnt} ", value=' '.join(list1), inline=False)
+        test.add_field(name=f"22@{cnt2} ", value=' '.join(list2), inline=False)
+        test.add_field(name=f"23@{cnt3} ", value=' '.join(list3), inline=False)
+        test.add_field(name=f"24@{cnt4} ", value=' '.join(list4), inline=False)
         await msg.edit(embed=test)
         # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
         await msg.remove_reaction(str(reaction.emoji), user)

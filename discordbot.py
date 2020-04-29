@@ -167,5 +167,5 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
         await msg.remove_reaction(str(reaction.emoji), user)
 
   
-
-client.run(os.getenv('TOKEN'))
+token = os.environ['DISCORD_BOT_TOKEN']
+client.run(token)

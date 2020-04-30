@@ -17,10 +17,10 @@ async def on_ready():
     print('------')  
 
 @client.command()
-async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt = 6, settime = 43200):
-    cnt, settime = int(cnt), float(settime)
-    #a = ctx.channel.name
-    #print(a)
+async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt1 = 6, settime = 43200):
+    cnt1, settime = int(cnt1), float(settime)
+    a = ctx.guild.name
+    print(a)
     #list.append(0)
     #b = len(list)
     #print(b)
@@ -42,17 +42,11 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
     check4 = 0
 
     test = discord.Embed(title=about,colour=0x1e90ff)
-    #test.add_field(name=f"交流戦\n", value=None, inline=True)
-    test = discord.Embed(title=about,colour=0x1e90ff)
-    test.add_field(name=f"21@{cnt} ", value=' '.join(list1), inline=False)
+    test.add_field(name=f"21@{cnt1} ", value=' '.join(list1), inline=False)
     test.add_field(name=f"22@{cnt2} ", value=' '.join(list2), inline=False)
     test.add_field(name=f"23@{cnt3} ", value=' '.join(list3), inline=False)
     test.add_field(name=f"24@{cnt4} ", value=' '.join(list4), inline=False)
     msg = await ctx.send(embed=test)
-    a = ctx.message.id
-    print(a)
-    a = ctx.message.content
-    print(a)
     #投票の欄
 
     await msg.add_reaction('🇦')
@@ -73,37 +67,19 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
         try:
             reaction, user = await client.wait_for('reaction_add', timeout=settime, check=check)
         except asyncio.TimeoutError:
-            #await ctx.send('残念、人が足りなかったようだ...')
             break
         else:
-            #if len(list) != b:
-            #  break
-            #else:
             if msg.id == reaction.message.id:
-                print(str(reaction.emoji))
-                print(reaction.message.id)
-                print(reaction.message.content)
                 if str(reaction.emoji) == '🇦':
                     list1.append(user.name)
                     mem1.append(user.mention)
-                    cnt -= 1
-                    #test = discord.Embed(title=about,colour=0x1e90ff)
-                    #test.add_field(name=f"21@{cnt} ", value=' '.join(list1), inline=True)
-                    #test.add_field(name=f"22@{cnt2} ", value=' '.join(list2), inline=True)
-                    #await msg.edit(embed=test)
-                    if cnt == 0:
+                    cnt1 -= 1
+                    if cnt1 == 0:
                       if check1 == 0:
                         member1 = ' '.join(mem1)
                         await ctx.send("21〆 {}".format(member1))
                         check1 +=1
-                    """if cnt == 0:
-                        test = discord.Embed(title=about,colour=0x1e90ff)
-                        test.add_field(name=f"あと__{cnt}__人 募集中\n", value='\n'.join(list1), inline=True)
-                        await msg.edit(embed=test)
-                        finish = discord.Embed(title=about,colour=0x1e90ff)
-                        finish.add_field(name="おっと、メンバーがきまったようだ",value='\n'.join(list1), inline=True)
-                        await ctx.send(embed=finish)
-                    """    
+                   
                 if str(reaction.emoji) == '🇧':
                     list2.append(user.name)
                     mem2.append(user.mention)
@@ -138,10 +114,7 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
                     if user.name in list1:
                         list1.remove(user.name)
                         mem1.remove(user.mention)
-                        cnt += 1
-                        #test = discord.Embed(title=about,colour=0x1e90ff)
-                        #test.add_field(name=f"あと__{cnt}__人 募集中\n", value='\n'.join(list1), inline=True)
-                        #await msg.edit(embed=test)
+                        cnt1 += 1
                     if user.name in list2:
                         list2.remove(user.name)
                         mem2.remove(user.mention)
@@ -158,13 +131,87 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
                         pass
 
         test = discord.Embed(title=about,colour=0x1e90ff)
-        test.add_field(name=f"21@{cnt} ", value=' '.join(list1), inline=False)
+        test.add_field(name=f"21@{cnt1} ", value=' '.join(list1), inline=False)
         test.add_field(name=f"22@{cnt2} ", value=' '.join(list2), inline=False)
         test.add_field(name=f"23@{cnt3} ", value=' '.join(list3), inline=False)
         test.add_field(name=f"24@{cnt4} ", value=' '.join(list4), inline=False)
         await msg.edit(embed=test)
         # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
         await msg.remove_reaction(str(reaction.emoji), user)
+
+@client.command()
+async def rec(ctx1, about, cnt, settime2):
+    cnt, settime2 = int(cnt), float(settime2)
+    settime2 = 60*settime2
+    #print(ctx1.author.name)
+    recruiter = ctx1.author.name
+    print(recruiter)	
+    list = [">"]
+    list.append(ctx1.author.name)
+    mem = []
+    mem.append(ctx1.author.mention)
+    test2 = discord.Embed(title=about,colour=0xe74c3c)
+    test2.add_field(name=f"@{cnt} ", value=' '.join(list), inline=False)
+    msg2 = await ctx1.send(embed=test2)
+    await msg2.add_reaction('🐟')
+    await msg2.add_reaction('✖')
+    await msg2.add_reaction('🥺')
+    
+    def check(reaction, user):
+        emoji = str(reaction.emoji)
+        if user.bot == True:    # botは無視
+            pass
+        else:
+            return emoji
+
+    while len(list)-1 <= 100:
+        try:
+            reaction, user = await client.wait_for('reaction_add', timeout=settime2, check=check)
+        except asyncio.TimeoutError:
+            await msg2.delete()
+            break
+        else:
+            if msg2.id == reaction.message.id:
+                if str(reaction.emoji) == '🐟':
+                    list.append(user.name)
+                    mem.append(user.mention)
+                    cnt -= 1
+                    if cnt == 0:
+                        member = ' '.join(mem)
+                        test2 = discord.Embed(title=about,colour=0xe74c3c)
+                        test2.add_field(name=f"@{cnt} ", value=' '.join(list), inline=False)
+                        await msg2.edit(embed=test2)
+                        await msg2.remove_reaction(str(reaction.emoji), user)
+                        await ctx1.send("〆 {}".format(member))  
+                        break
+                if str(reaction.emoji) == '✖':
+                    if user.name in list:
+                        list.remove(user.name)
+                        mem.remove(user.mention)
+                        cnt += 1
+                if str(reaction.emoji) == '🥺': 
+                    if user.name == recruiter:
+                      await msg2.delete()
+                      break
+                    
+                    
+                      
+        test2 = discord.Embed(title=about,colour=0xe74c3c)
+        test2.add_field(name=f"@{cnt} ", value=' '.join(list), inline=False)
+        await msg2.edit(embed=test2)
+        # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
+        await msg2.remove_reaction(str(reaction.emoji), user)
+
+
+
+
+
+
+@client.command()
+async def fish(ctx2, about = "🐟🐟🐟 使い方 🐟🐟🐟", cnt = 6, settime = 43200):
+  help1 = discord.Embed(title=about,color=0xe74c3c,description=".s: 交流戦募集開始※12時間で停止\n英語スタンプ: 挙手\n×スタンプ: 挙手全へ\n.rec: 募集開始(.rec 募集名 人数 制限時間(分))\n※募集開始した人の🥺スタンプで募集終了")
+  await ctx2.send(embed=help1)
+
 
   
 token = os.environ['DISCORD_BOT_TOKEN']

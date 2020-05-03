@@ -463,7 +463,7 @@ async def fish(ctx2, about = "🐟🐟🐟 使い方 🐟🐟🐟", cnt = 6, set
   await ctx2.send(embed=help1)
    
 @client.command()
-async def fish(ctx3)
+async def sakanaonly(ctx3)
   for s in client.guilds:
     await ctx3.send(s)  
 

@@ -463,7 +463,7 @@ async def fish(ctx2, about = "🐟🐟🐟 使い方 🐟🐟🐟", cnt = 6, set
   await ctx2.send(embed=help1)
 
 @client.command()
-async def sakanaonly(fish)
+async def sakanaonly(ctx2)
     #fishid = os.environ['FISH_ID']
     #botid = os.environ['BOT_ID']
     #if fish.author.id == fishid:

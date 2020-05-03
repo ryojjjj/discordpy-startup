@@ -374,7 +374,7 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
 
 @client.command()
 async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt5 = 6, settime = 43200):
-    cnt5, settime = int(cnt1), float(settime)
+    cnt5, settime = int(cnt5), float(settime)
     a = ctx.guild.name
     print(a)
     #list.append(0)

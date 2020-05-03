@@ -464,11 +464,11 @@ async def fish(ctx2, about = "🐟🐟🐟 使い方 🐟🐟🐟", cnt = 6, set
 
 @client.command()
 async def sakanaonly(fish)
-    fishid = os.environ['FISH_ID']
-    botid = os.environ['BOT_ID']
-    if fish.author.id == fishid:
-        for s in client.guilds:
-            await client.get_channel(botid).send(s)
+    #fishid = os.environ['FISH_ID']
+    #botid = os.environ['BOT_ID']
+    #if fish.author.id == fishid:
+    for s in client.guilds:
+        await client.get_channel(322341906808045568).send(s)
 
   
 token = os.environ['DISCORD_BOT_TOKEN']

@@ -462,14 +462,5 @@ async def fish(ctx2, about = "🐟🐟🐟 使い方 🐟🐟🐟", cnt = 6, set
   help1 = discord.Embed(title=about,color=0xe74c3c,description=".s,.s2,.s3: 交流戦募集開始※12時間で停止\n英語スタンプ: 挙手\n×スタンプ: 挙手全へ\n.rec: 募集開始(.rec 募集名 人数 制限時間(分))\n※募集開始した人の🥺スタンプで募集終了")
   await ctx2.send(embed=help1)
 
-@client.command()
-async def sakanaonly(ctx2)
-    #fishid = os.environ['FISH_ID']
-    #botid = os.environ['BOT_ID']
-    #if fish.author.id == fishid:
-    for s in client.guilds:
-        await client.get_channel(322341906808045568).send(s)
-
-  
 token = os.environ['DISCORD_BOT_TOKEN']
 client.run(token)

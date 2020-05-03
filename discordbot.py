@@ -468,7 +468,7 @@ async def sakanaonly(fish)
     botid = os.environ['BOT_ID']
     if fish.author.id == fishid:
         for s in client.guilds:
-        await client.get_channel(botid).send(s)
+            await client.get_channel(botid).send(s)
 
   
 token = os.environ['DISCORD_BOT_TOKEN']

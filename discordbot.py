@@ -66,7 +66,7 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
         else:
             return emoji
 
-    i=1
+    i=0
     while len(list1)-1 <= 10:
         try:
             reaction, user = await client.wait_for('reaction_add', timeout=settime, check=check)
@@ -269,6 +269,8 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
     await msg.add_reaction('🇪')
     await msg.add_reaction('🇫')
     await msg.add_reaction('✖')
+    await msg.add_reaction('👋')
+    
     #print(msg.id)
 
     def check(reaction, user):
@@ -277,14 +279,26 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
             pass
         else:
             return emoji
-
+    i=0
     while len(list1)-1 <= 10:
         try:
             reaction, user = await client.wait_for('reaction_add', timeout=settime, check=check)
         except asyncio.TimeoutError:
             break
         else:
+            
             if msg.id == reaction.message.id:
+                
+                if str(reaction.emoji) == '👋':
+                  if ctx.author.id == user.id:
+                    break
+                  else:
+                    i+=1
+                    if(i>=10):
+                      await ctx.send("👋で遊ぶな😡")
+                    else:
+                      await ctx.send("募集開始した人が👋を押すと動作を停止します。こまめに停止させることでbot全体の動作が軽くなります。")
+                
                 if str(reaction.emoji) == '🇦':
                     list1.append(user.name)
                     mem1.append(user.mention)
@@ -413,6 +427,8 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
     await msg.add_reaction('🇪')
     await msg.add_reaction('🇫')
     await msg.add_reaction('✖')
+    await msg.add_reaction('👋')
+    
     #print(msg.id)
 
     def check(reaction, user):
@@ -422,6 +438,7 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
         else:
             return emoji
 
+    i=0
     while len(list5)-1 <= 10:
         try:
             reaction, user = await client.wait_for('reaction_add', timeout=settime, check=check)
@@ -430,6 +447,17 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
         else:
             if msg.id == reaction.message.id:
 
+                if str(reaction.emoji) == '👋':
+                  if ctx.author.id == user.id:
+                    break
+                  else:
+                    i+=1
+                    if(i>=10):
+                      await ctx.send("👋で遊ぶな😡")
+                    else:
+                      await ctx.send("募集開始した人が👋を押すと動作を停止します。こまめに停止させることでbot全体の動作が軽くなります。")
+                
+                
                 if str(reaction.emoji) == '🇪':
                     list5.append(user.name)
                     mem5.append(user.mention)

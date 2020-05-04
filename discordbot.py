@@ -172,6 +172,7 @@ async def rec(ctx1, about, cnt, settime2):
     await msg2.add_reaction('✖')
     await msg2.add_reaction('🥺')
     
+    
     def check(reaction, user):
         emoji = str(reaction.emoji)
         if user.bot == True:    # botは無視

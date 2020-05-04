@@ -56,6 +56,7 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
     await msg.add_reaction('🇨')
     await msg.add_reaction('🇩')
     await msg.add_reaction('✖')
+    await msg.add_reaction('👋')
     #print(msg.id)
 
     def check(reaction, user):
@@ -65,12 +66,24 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
         else:
             return emoji
 
+    i=1
     while len(list1)-1 <= 10:
         try:
             reaction, user = await client.wait_for('reaction_add', timeout=settime, check=check)
         except asyncio.TimeoutError:
             break
         else:
+            
+            if str(reaction.emoji) == '👋':
+                  if ctx.author.id == user.id:
+                    break
+                  else:
+                    i+=1
+                    if(i>=10):
+                      await ctx.send("👋で遊ぶな😡")
+                    else:
+                      await ctx.send("募集開始した人が👋を押すと動作を停止します。こまめに停止させることでbot全体の動作が軽くなります。")    
+            
             if msg.id == reaction.message.id:
                 if str(reaction.emoji) == '🇦':
                     list1.append(user.name)

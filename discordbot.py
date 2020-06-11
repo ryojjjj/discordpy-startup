@@ -37,15 +37,15 @@ async def cal(ctx2):
 
   for k in range(12):
     i += 1
-    check = 0
-    while check == 0:
+    check1 = 0
+    while check1 == 0:
       rank = await client.wait_for('message',check=check)
       rank = rank.content
       await ctx2.channel.purge(limit=1)
       
       #print(rank)
       if len(rank) == 6:        
-        check = 1
+        check1 = 1
         #print("OK")
       elif rank == 'end':
         break

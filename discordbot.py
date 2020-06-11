@@ -43,6 +43,8 @@ async def cal(ctx2):
       if len(rank) == 6:        
         check = 1
         #print("OK")
+      elif rank == end:
+        break
       else:
         await ctx2.send("try again")
     

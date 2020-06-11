@@ -45,6 +45,8 @@ async def cal(ctx2):
         #print("OK")
       elif rank == 'end':
         break
+      elif rank == '.cal':
+        break
       else:
         await ctx2.send("try again")
     

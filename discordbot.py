@@ -48,6 +48,7 @@ async def cal(ctx2):
         check1 = 1
         #print("OK")
       elif rank == 'end':
+        await ctx2.send("即時終了")
         break
       elif rank == '.cal':
         break

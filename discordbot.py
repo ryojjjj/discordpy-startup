@@ -20,6 +20,10 @@ async def on_ready():
 
 @client.command()
 async def cal(ctx2):
+    
+  def check(m):
+    return m.author.id == ctx2.author.id
+
   i = 0
   a1 = 0
   a2 = 0
@@ -35,7 +39,7 @@ async def cal(ctx2):
     i += 1
     check = 0
     while check == 0:
-      rank = await client.wait_for('message')
+      rank = await client.wait_for('message',check=check)
       rank = rank.content
       await ctx2.channel.purge(limit=1)
       

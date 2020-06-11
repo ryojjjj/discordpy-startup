@@ -19,6 +19,58 @@ async def on_ready():
     print('------')  
 
 @client.command()
+async def cal(ctx2):
+  i = 0
+  a1 = 0
+  a2 = 0
+  b1 = 0
+  b2 = 0
+  c1 = ""
+  c2 = str(a2)+" - "+str(b2)
+  cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n{}".format(c2,12-i,c1))
+  result = await ctx2.send(embed=cal)
+  await ctx2.send("結果を入力してください")
+
+  for k in range(12):
+    i += 1
+    check = 0
+    while check == 0:
+      rank = await client.wait_for('message')
+      rank = rank.content
+      await ctx2.channel.purge(limit=1)
+      
+      #print(rank)
+      if len(rank) == 6:        
+        check = 1
+        #print("OK")
+      else:
+        await ctx2.send("try again")
+    
+    ranklist = ''
+    a1 = 0
+    for j in range(6):
+      ranklist += str(int(rank[j],16))+" "
+      point = int(rank[j],16)
+      if point == 1:
+        point = 15
+      elif point == 2:
+        point = 12
+      else:
+        point = 13-point
+      a1 += point
+      #print(a1)
+
+    b1 = 82-a1
+    a2 += a1
+    b2 += b1
+    c1 += "race"+str(i)+"\t"+str(a1)+" - "+str(b1)+"\t点差 "+str(a1-b1)+"\t順位 "+ranklist+"\n"
+    c2 = str(a2)+" - "+str(b2)+"\t点差 "+str(a2-b2)
+    cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n順位 {}\n--------------------------\n{}".format(c2,12-i,ranklist,c1))
+    await result.edit(embed=cal)
+    #print(a1,a2,b1,b2,c1,c2)    
+        
+    
+@client.command()
 async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt1 = 6, settime = 43200):
     cnt1, settime = int(cnt1), float(settime)
     a = ctx.guild.name

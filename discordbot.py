@@ -30,7 +30,7 @@ async def cal(ctx2):
   b1 = 0
   b2 = 0
   c1 = ""
-  c2 = str(a2)+" - "+str(b2)
+  c2 = str(a2)+"-"+str(b2)
   cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n{}".format(c2,12-i,c1))
   result = await ctx2.send(embed=cal)
   await ctx2.send("結果を入力してください")
@@ -72,9 +72,9 @@ async def cal(ctx2):
     b1 = 82-a1
     a2 += a1
     b2 += b1
-    c1 += "race"+str(i)+"\t"+str(a1)+" - "+str(b1)+"\t点差 "+str(a1-b1)+"\t順位 "+ranklist+"\n"
-    c2 = str(a2)+" - "+str(b2)+"\t点差 "+str(a2-b2)
-    cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n順位 {}\n--------------------------\n{}".format(c2,12-i,ranklist,c1))
+    c1 += "race"+str(i)+" |"+str(a1)+"-"+str(b1)+"\t("+str(a1-b1)+")\t順位 "+ranklist+"\n"
+    c2 = str(a2)+"-"+str(b2)+"\t("+str(a2-b2)+")"
+    cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n--------------------------\n{}".format(c2,12-i,c1))
     await result.edit(embed=cal)
     #print(a1,a2,b1,b2,c1,c2)    
         
@@ -562,7 +562,7 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
 
 @client.command()
 async def fish(ctx2, about = "🐟🐟🐟 使い方 🐟🐟🐟", cnt = 6, settime = 43200):
-  help1 = discord.Embed(title=about,color=0xe74c3c,description=".s,.s2,.s3: 交流戦募集開始※12時間で停止\n英語スタンプ: 挙手\n×スタンプ: 挙手全へ\n.rec: 募集開始(.rec 募集名 人数 制限時間(分))\n※募集開始した人の🥺スタンプで募集終了")
+  help1 = discord.Embed(title=about,color=0xe74c3c,description=".s,.s2,.s3: 交流戦募集開始※12時間で停止\n英語スタンプ: 挙手\n×スタンプ: 挙手全へ\n.rec: 募集開始(.rec 募集名 人数 制限時間(分))\n※募集開始した人の👋スタンプで募集終了\n.cal: 即時集計。順位は16進数で入力、endで強制終了\n作成者: さかな(@sakana8dx)")
   await ctx2.send(embed=help1)
    
 

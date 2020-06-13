@@ -231,7 +231,7 @@ async def rec(ctx1, about, cnt, settime2):
     msg2 = await ctx1.send(embed=test2)
     await msg2.add_reaction('🐟')
     await msg2.add_reaction('✖')
-    await msg2.add_reaction('🥺')
+    await msg2.add_reaction('👋')
     
     
     def check(reaction, user):
@@ -561,8 +561,8 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
 
 
 @client.command()
-async def fish(ctx2, about = "🐟🐟🐟 使い方 🐟🐟🐟", cnt = 6, settime = 43200):
-  help1 = discord.Embed(title=about,color=0xe74c3c,description=".s,.s2,.s3: 交流戦募集開始※12時間で停止\n英語スタンプ: 挙手\n×スタンプ: 挙手全へ\n.rec: 募集開始(.rec 募集名 人数 制限時間(分))\n※募集開始した人の👋スタンプで募集終了\n.cal: 即時集計。順位は16進数で入力、endで強制終了\n作成者: さかな(@sakana8dx)")
+async def help(ctx2, about = "🐟🐟🐟 使い方 🐟🐟🐟"):
+  help1 = discord.Embed(title=about,color=0xe74c3c,description=".s,.s2,.s3: 交流戦募集開始※12時間で停止 英語スタンプ→挙手 ×スタンプ→挙手全へ\n.rec: 募集開始(.rec 募集名 人数 制限時間(分))\n※募集開始した人の👋スタンプで募集終了\n.cal: 即時集計。順位は16進数で入力、endで強制終了\n作成者: さかな(@sakana8dx)")
   await ctx2.send(embed=help1)
    
 

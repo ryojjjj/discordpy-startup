@@ -20,7 +20,7 @@ async def on_ready():
 
 @client.command()
 async def help(ctx2, about = "🐟🐟🐟 使い方 🐟🐟🐟"):
-  help1 = discord.Embed(title=about,color=0xe74c3c,description=".s,.s2,.s3: 交流戦募集開始※12時間で停止 英語スタンプ→挙手 ×スタンプ→挙手全へ\n.rec: 募集開始(.rec 募集名 人数 制限時間(分))\n※募集開始した人の👋スタンプで募集終了\n.cal: 即時集計。順位は16進数で入力、endで強制終了\n.ran 数字: ランダムに数字出力\n.dev 数字 リスト: 組み分け\n作成者: さかな(@sakana8dx)")
+  help1 = discord.Embed(title=about,color=0xe74c3c,description=".s,.s2,.s3: 交流戦募集開始※12時間で停止 英語スタンプ→挙手 ×スタンプ→挙手全へ\n.rec: 募集開始(.rec 募集名 人数 制限時間(分))\n※募集開始した人の👋スタンプで募集終了\n.cal: 即時集計。順位は16進数で入力、endで強制終了\n.ran 数字: ランダムに数字出力\n.dev 数字 リスト: 組み分け\n.choose リスト: 選択\n作成者: さかな(@sakana8dx)")
   await ctx2.send(embed=help1)
        
     

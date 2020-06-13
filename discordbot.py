@@ -33,7 +33,7 @@ async def cal(ctx2):
   c2 = str(a2)+"-"+str(b2)
   cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n{}".format(c2,12-i,c1))
   result = await ctx2.send(embed=cal)
-  await ctx2.send("結果を入力してください")
+  await ctx2.send("結果を入力してください(end or @0 で停止)")
 
   for k in range(12):
     i += 1
@@ -72,7 +72,7 @@ async def cal(ctx2):
     b1 = 82-a1
     a2 += a1
     b2 += b1
-    c1 += "race"+str(i).ljust(2)+" | "+str(a1).rjust(2)+"-"+str(b1).rjust(2)+" ("+str(a1-b1).rjust(2)+") | "+ranklist+"\n"
+    c1 += "race"+str(i).ljust(2)+" | "+str(a1)+"-"+str(b1)+" ("+str(a1-b1)+") | "+ranklist+"\n"
     c2 = str(a2)+"-"+str(b2)+"\t("+str(a2-b2)+")"
     cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n---------------------\n{}".format(c2,12-i,c1))
     await result.edit(embed=cal)

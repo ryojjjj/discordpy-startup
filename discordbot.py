@@ -111,7 +111,7 @@ async def vote(ctx1):
             reaction, user = await client.wait_for('reaction_add', timeout=settime2, check=check)
         except asyncio.TimeoutError:
             #await msg2.delete()
-            await ctx1.send("投票終了時間")
+            #await ctx1.send("")
             break
         else:
             if msg2.id == reaction.message.id:

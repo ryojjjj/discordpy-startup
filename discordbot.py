@@ -93,8 +93,8 @@ async def vote(ctx1):
     list = ''
     maru = 0
     batu = 0
-    #time = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-    print(datetime.date.today(datetime.timezone(datetime.timedelta(hours=9))))
+    time = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+    #print(datetime.date.today(datetime.timezone(datetime.timedelta(hours=9))))
     test2 = discord.Embed(title=about,colour=0xe74c3c)
     test2.add_field(name=time,value=about2)
     #test2.add_field(name=f"@{cn")

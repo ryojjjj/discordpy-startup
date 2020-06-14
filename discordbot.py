@@ -90,7 +90,8 @@ async def vote(ctx1):
     about2 = "\n投票終了まで" + str(settime2) +"分"
     settime2 = 60*settime2
     #print(ctx1.author.name)
-    list = ''
+    list = []
+    list2 = []
     maru = 0
     batu = 0
     time = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
@@ -111,27 +112,49 @@ async def vote(ctx1):
             reaction, user = await client.wait_for('reaction_add', timeout=settime2, check=check)
         except asyncio.TimeoutError:
             #await msg2.delete()
-            #await ctx1.send("")
+            await ctx1.send("投票終了時間")
             break
         else:
             if msg2.id == reaction.message.id:
                 if str(reaction.emoji) == '🙆':
                     if str(user.id) in str(list): 
                       pass
-                    else:
-                      list += str(user.id)
+                      print("pass")
+                    elif str(user.id) in str(list2):
+                      #list += str(user.id) + " "
+                      list.append(user.id)
                       maru += 1 
-                if str(reaction.emoji) == '🙅':
-                    if str(user.id) in str(list):   
+                      batu -= 1
+                      list2.remove(user.id)                 
+                      #list2.replace(str(user.id),'')              
+                    else:
+                      #list += str(user.id)
+                      list.append(user.id)
+                      maru += 1 
+                elif str(reaction.emoji) == '🙅':
+                    if str(user.id) in str(list2):   
                         pass
+                        print("pass")
+
+                    elif str(user.id) in str(list):
+                      #list2 += str(user.id) + " "
+                      list2.append(user.id)                      
+                      maru -= 1 
+                      batu += 1
+                      list.remove(user.id)                 
+                      #list.replace(str(user.id),'')
+                      #print(list,"\n",list2)
                     else:                                   
-                      list += str(user.id) 
+                      #list2 += str(user.id) 
+                      list.append(user.id)
                       batu += 1 
-                if str(reaction.emoji) == '👋': 
+                elif str(reaction.emoji) == '👋': 
                     if user.id == ctx1.author.id:
                       #await msg2.delete()
-                      break
-                      
+                      break     
+
+        print("OK") 
+        print(list,":1\n",list2,":2")                      
         test2 = discord.Embed(title=about,colour=0xe74c3c,description="🙆:{} 🙅:{}".format(maru,batu))
         test2.add_field(name=time,value=about2)
 
@@ -140,7 +163,7 @@ async def vote(ctx1):
         # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
         await msg2.remove_reaction(str(reaction.emoji), user)
     
-    await ctx1.send(f"投票終了{ctx1.author.mention}")    
+    await ctx1.send(f"投票終了{ctx1.author.mention}")
     
 @client.command()
 async def cal(ctx2):

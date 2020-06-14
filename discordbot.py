@@ -21,10 +21,9 @@ async def on_ready():
 
 @client.command()
 async def fish(ctx2, about = "🐟🐟🐟 使い方 🐟🐟🐟"):
-  help1 = discord.Embed(title=about,color=0xe74c3c,description=".s,.s2,.s3: 交流戦募集開始※12時間で停止 英語スタンプ→挙手 ×スタンプ→挙手全へ\n.rec: 募集開始(.rec 募集名 人数 制限時間(分))\n※募集開始した人の👋スタンプで募集終了\n.cal: 即時集計。順位は16進数で入力、endで強制終了\n.ran 数字: ランダムに数字出力\n.dev 数字 リスト: 組み分け\n.choose リスト: 選択\n作成者: さかな(@sakana8dx)")
-  await ctx2.send(embed=help1)
-       
-    
+  help1 = discord.Embed(title=about,color=0xe74c3c,description=".s,.s2,.s3: 交流戦募集開始※12時間で停止 英語スタンプ→挙手 ×スタンプ→挙手全へ\n.rec: 募集開始(.rec 募集名 人数 制限時間(分))\n※募集開始した人の👋スタンプで募集終了\n.cal: 即時集計。順位は16進数で入力、endで強制終了\n.ran 数字: ランダムに数字出力\n.dev 数字 リスト: 組み分け\n.choose リスト: 選択\n.vote: 匿名アンケート(2択)\n作成者: さかな(@sakana8dx)")
+  await ctx2.send(embed=help1)       
+   
 @client.command()
 async def ran(ctx,arg):
   a=int(arg)
@@ -34,7 +33,7 @@ async def ran(ctx,arg):
 async def choose(ctx,*args):
   b=len(args)
   await ctx.send(args[random.randrange(b)])
-
+    
 @client.command()
 async def dev(ctx,*args):
   a=int(args[0])
@@ -60,6 +59,88 @@ async def dev(ctx,*args):
         c -= 1
     result2 +=str(i+1) + " | " + result + "\n"
   await ctx.send(result2)
+ 
+@client.command()
+async def vote(ctx1):
+
+    def check(reaction, user):
+        emoji = str(reaction.emoji)
+        if user.bot == True:    # botは無視
+            pass
+        else:          
+            return emoji
+
+    def check3(m):
+      return m.author.id == ctx1.author.id        
+    test2 = discord.Embed(title="内容を入力してください",colour=0xe74c3c)
+    #test2.add_field(name=f"@{cn")
+    msg2 = await ctx1.send(embed=test2)
+    #await ctx1.send("内容を入力してください")
+    about = await client.wait_for('message',check=check3)
+    about = about.content
+    #await ctx.send
+    await ctx1.channel.purge(limit=1)
+    test2 = discord.Embed(title="投票終了までの時間を入力してください(分)",colour=0xe74c3c)
+    await msg2.edit(embed=test2)
+    settime2 = await client.wait_for('message',check=check3)
+    settime2 = settime2.content   
+    await ctx1.channel.purge(limit=1)
+    #print(about)
+    settime2 = int(settime2)
+    about2 = "\n投票終了まで" + str(settime2) +"分"
+    settime2 = 60*settime2
+    #print(ctx1.author.name)
+    list = ''
+    maru = 0
+    batu = 0
+    #time = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+    print(datetime.date.today(datetime.timezone(datetime.timedelta(hours=9))))
+    test2 = discord.Embed(title=about,colour=0xe74c3c)
+    test2.add_field(name=time,value=about2)
+    #test2.add_field(name=f"@{cn")
+    #msg2 = await ctx1.send(embed=test2)
+    await msg2.edit(embed=test2)
+    await msg2.add_reaction('🙆')
+    await msg2.add_reaction('🙅')
+    await msg2.add_reaction('👋')
+    
+    check2 = 0
+
+    while check2 == 0:
+        try:
+            reaction, user = await client.wait_for('reaction_add', timeout=settime2, check=check)
+        except asyncio.TimeoutError:
+            #await msg2.delete()
+            await ctx1.send("投票終了時間")
+            break
+        else:
+            if msg2.id == reaction.message.id:
+                if str(reaction.emoji) == '🙆':
+                    if str(user.id) in str(list): 
+                      pass
+                    else:
+                      list += str(user.id)
+                      maru += 1 
+                if str(reaction.emoji) == '🙅':
+                    if str(user.id) in str(list):   
+                        pass
+                    else:                                   
+                      list += str(user.id) 
+                      batu += 1 
+                if str(reaction.emoji) == '👋': 
+                    if user.id == ctx1.author.id:
+                      #await msg2.delete()
+                      break
+                      
+        test2 = discord.Embed(title=about,colour=0xe74c3c,description="🙆:{} 🙅:{}".format(maru,batu))
+        test2.add_field(name=time,value=about2)
+
+        #test2.add_field("🙆{maru} 🙅{batu}")
+        await msg2.edit(embed=test2)
+        # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
+        await msg2.remove_reaction(str(reaction.emoji), user)
+    
+    await ctx1.send(f"投票終了{ctx1.author.mention}")    
     
 @client.command()
 async def cal(ctx2):

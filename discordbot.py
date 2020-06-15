@@ -347,6 +347,7 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
                             check4 +=1
     
                 if str(reaction.emoji) == '↩':
+                    await msg.delete()
                     msg = await ctx.send(embed=test)  
                     await msg.add_reaction('🇦')
                     await msg.add_reaction('🇧')
@@ -594,6 +595,7 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                         check6 +=1   
                         
                 if str(reaction.emoji) == '↩':
+                    await msg.delete()
                     msg = await ctx.send(embed=test)  
                     await msg.add_reaction('🇦')
                     await msg.add_reaction('🇧')
@@ -732,6 +734,7 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                             check6 +=1                                              
       
                 if str(reaction.emoji) == '↩':
+                    await msg.delete()
                     msg = await ctx.send(embed=test)                      
                     await msg.add_reaction('🇪')
                     await msg.add_reaction('🇫')

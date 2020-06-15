@@ -264,6 +264,7 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
     await msg.add_reaction('🇨')
     await msg.add_reaction('🇩')
     await msg.add_reaction('✖')
+    await msg.add_reaction('↩')
     await msg.add_reaction('👋')
     #print(msg.id)
 
@@ -332,7 +333,18 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
                         member4 = ' '.join(mem4)
                         await ctx.send("24〆 {}".format(member4))
                         check4 +=1
-      
+    
+                if str(reaction.emoji) == '↩':
+                    msg = await ctx.send(embed=test)  
+                    await msg.add_reaction('🇦')
+                    await msg.add_reaction('🇧')
+                    await msg.add_reaction('🇨')
+                    await msg.add_reaction('🇩')
+                    await msg.add_reaction('✖')
+                    await msg.add_reaction('↩')
+                    await msg.add_reaction('👋')
+                    
+    
                 elif str(reaction.emoji) == '✖':
                     if user.name in list1:
                         list1.remove(user.name)
@@ -478,6 +490,7 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
     await msg.add_reaction('🇪')
     await msg.add_reaction('🇫')
     await msg.add_reaction('✖')
+    await msg.add_reaction('↩')
     await msg.add_reaction('👋')
     
     #print(msg.id)
@@ -566,7 +579,19 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                       if check6 == 0:
                         member6 = ' '.join(mem6)
                         await ctx.send("26〆 {}".format(member6))
-                        check6 +=1                                              
+                        check6 +=1   
+                        
+                if str(reaction.emoji) == '↩':
+                    msg = await ctx.send(embed=test)  
+                    await msg.add_reaction('🇦')
+                    await msg.add_reaction('🇧')
+                    await msg.add_reaction('🇨')
+                    await msg.add_reaction('🇩')
+                    await msg.add_reaction('🇪')
+                    await msg.add_reaction('🇫')
+                    await msg.add_reaction('✖')
+                    await msg.add_reaction('↩')
+                    await msg.add_reaction('👋')        
       
                 elif str(reaction.emoji) == '✖':
                     if user.name in list1:
@@ -636,6 +661,7 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
     await msg.add_reaction('🇪')
     await msg.add_reaction('🇫')
     await msg.add_reaction('✖')
+    await msg.add_reaction('↩')
     await msg.add_reaction('👋')
     
     #print(msg.id)
@@ -687,6 +713,14 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                         await ctx.send("26〆 {}".format(member6))
                         check6 +=1                                              
       
+                if str(reaction.emoji) == '↩':
+                    msg = await ctx.send(embed=test)                      
+                    await msg.add_reaction('🇪')
+                    await msg.add_reaction('🇫')
+                    await msg.add_reaction('✖')
+                    await msg.add_reaction('↩')
+                    await msg.add_reaction('👋')      
+    
                 elif str(reaction.emoji) == '✖':          
                     if user.name in list5:
                         list5.remove(user.name)

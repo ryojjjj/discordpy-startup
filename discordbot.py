@@ -146,7 +146,7 @@ async def vote(ctx1):
                       #print(list,"\n",list2)
                     else:                                   
                       #list2 += str(user.id) 
-                      list.append(user.id)
+                      list2.append(user.id)
                       batu += 1 
                 elif str(reaction.emoji) == '👋': 
                     if user.id == ctx1.author.id:

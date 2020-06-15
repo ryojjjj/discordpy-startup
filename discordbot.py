@@ -295,44 +295,56 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
             
             if msg.id == reaction.message.id:
                 if str(reaction.emoji) == '🇦':
-                    list1.append(user.name)
-                    mem1.append(user.mention)
-                    cnt1 -= 1
-                    if cnt1 == 0:
-                      if check1 == 0:
-                        member1 = ' '.join(mem1)
-                        await ctx.send("21〆 {}".format(member1))
-                        check1 +=1
-                   
+                    if user.name in list1:
+                        pass
+                    else:
+                        list1.append(user.name)
+                        mem1.append(user.mention)
+                        cnt1 -= 1
+                        if cnt1 == 0:
+                          if check1 == 0:
+                            member1 = ' '.join(mem1)
+                            await ctx.send("21〆 {}".format(member1))
+                            check1 +=1
+
                 if str(reaction.emoji) == '🇧':
-                    list2.append(user.name)
-                    mem2.append(user.mention)
-                    cnt2 -= 1
-                    if cnt2 == 0:
-                      if check2 == 0:
-                        member2 = ' '.join(mem2)
-                        await ctx.send("22〆 {}".format(member2))
-                        check2 +=1
+                    if user.name in list2:
+                        pass
+                    else:
+                        list2.append(user.name)
+                        mem2.append(user.mention)
+                        cnt2 -= 1
+                        if cnt2 == 0:
+                          if check2 == 0:
+                            member2 = ' '.join(mem2)
+                            await ctx.send("22〆 {}".format(member2))
+                            check2 +=1
 
                 if str(reaction.emoji) == '🇨':
-                    list3.append(user.name)
-                    mem3.append(user.mention)
-                    cnt3 -= 1
-                    if cnt3 == 0:
-                      if check3 == 0:
-                        member3 = ' '.join(mem3)
-                        await ctx.send("23〆 {}".format(member3))
-                        check3 +=1
+                    if user.name in list3:
+                        pass
+                    else:
+                        list3.append(user.name)
+                        mem3.append(user.mention)
+                        cnt3 -= 1
+                        if cnt3 == 0:
+                          if check3 == 0:
+                            member3 = ' '.join(mem3)
+                            await ctx.send("23〆 {}".format(member3))
+                            check3 +=1
 
                 if str(reaction.emoji) == '🇩':
-                    list4.append(user.name)
-                    mem4.append(user.mention)
-                    cnt4 -= 1
-                    if cnt4 == 0:
-                      if check4 == 0:
-                        member4 = ' '.join(mem4)
-                        await ctx.send("24〆 {}".format(member4))
-                        check4 +=1
+                    if user.name in list4:
+                        pass
+                    else:
+                        list4.append(user.name)
+                        mem4.append(user.mention)
+                        cnt4 -= 1
+                        if cnt4 == 0:
+                          if check4 == 0:
+                            member4 = ' '.join(mem4)
+                            await ctx.send("24〆 {}".format(member4))
+                            check4 +=1
     
                 if str(reaction.emoji) == '↩':
                     msg = await ctx.send(embed=test)  
@@ -694,24 +706,30 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                 
                 
                 if str(reaction.emoji) == '🇪':
-                    list5.append(user.name)
-                    mem5.append(user.mention)
-                    cnt5 -= 1
-                    if cnt5 == 0:
-                      if check5 == 0:
-                        member5 = ' '.join(mem5)
-                        await ctx.send("25〆 {}".format(member5))
-                        check5 +=1        
+                    if user.name in list5:
+                        pass
+                    else:
+                        list5.append(user.name)
+                        mem5.append(user.mention)
+                        cnt5 -= 1
+                        if cnt5 == 0:
+                          if check5 == 0:
+                            member5 = ' '.join(mem5)
+                            await ctx.send("25〆 {}".format(member5))
+                            check5 +=1        
                                           
                 if str(reaction.emoji) == '🇫':
-                    list6.append(user.name)
-                    mem6.append(user.mention)
-                    cnt6 -= 1
-                    if cnt6 == 0:
-                      if check6 == 0:
-                        member6 = ' '.join(mem6)
-                        await ctx.send("26〆 {}".format(member6))
-                        check6 +=1                                              
+                    if user.name in list6:
+                        pass
+                    else:
+                        list6.append(user.name)
+                        mem6.append(user.mention)
+                        cnt6 -= 1
+                        if cnt6 == 0:
+                          if check6 == 0:
+                            member6 = ' '.join(mem6)
+                            await ctx.send("26〆 {}".format(member6))
+                            check6 +=1                                              
       
                 if str(reaction.emoji) == '↩':
                     msg = await ctx.send(embed=test)                      

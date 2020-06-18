@@ -188,9 +188,9 @@ async def cal(ctx):
         return False
   def is_under12(b):
     if all(elem < 13 for elem in b):
-        check1 = 1
+        return True
     else:
-        ctx.send("Try again")
+        False
 
   cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="0-0 @12")
   result = await ctx.send(embed=cal)
@@ -229,7 +229,10 @@ async def cal(ctx):
                   b.append(int(a[5:7]))
                   b.append(int(a[7:]))
           await rank.delete()
-          is_under12(b)
+          if is_under12(b)==True:
+                check1=1
+          else:
+            await ctx.send("try again")
         else:
           await ctx.send("try again")
       

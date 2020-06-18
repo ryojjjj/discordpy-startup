@@ -103,6 +103,7 @@ async def vote(ctx1):
     await msg2.edit(embed=test2)
     await msg2.add_reaction('🙆')
     await msg2.add_reaction('🙅')
+    await msg2.add_reaction('↩')
     await msg2.add_reaction('👋')
     
     check2 = 0
@@ -148,6 +149,15 @@ async def vote(ctx1):
                       #list2 += str(user.id) 
                       list2.append(user.id)
                       batu += 1 
+                    
+                elif str(reaction.emoji) == '↩': 
+                    await msg2.delete()
+                    msg2 = await ctx1.send(embed=test2)  
+                    await msg2.add_reaction('🙆')
+                    await msg2.add_reaction('🙅')
+                    await msg2.add_reaction('↩')
+                    await msg2.add_reaction('👋')
+                    
                 elif str(reaction.emoji) == '👋': 
                     if user.id == ctx1.author.id:
                       #await msg2.delete()

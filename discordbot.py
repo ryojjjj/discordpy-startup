@@ -199,21 +199,19 @@ async def cal(ctx):
     while check1 == 0:
       rank = await client.wait_for('message',check=check)    
       a = rank.content
-      b = []
-      await rank.delete()
+      b = []      
       if len(a)==6 or len(a)==7 or len(a)==8 or len(a)==9:
         if is_int(a)==True:
           check1 = 1
+          await rank.delete()
         else:
-          pass
+          await ctx.send("try again")
       
       elif a == 'end':
           await ctx.send("即時終了")
           break
       elif a == '.cal':
-          break
-      else:
-          await ctx.send("try again")
+          break          
     
     if len(a)==6:
         for i in range(6):

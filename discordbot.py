@@ -176,65 +176,88 @@ async def vote(ctx1):
     await ctx1.send(f"投票終了{ctx1.author.mention}")
     
 @client.command()
-async def cal(ctx2):
+async def cal(ctx):
     
   def check(m):
-    return m.author.id == ctx2.author.id
+    return m.author.id == ctx.author.id
+  def is_int(s):
+    try:
+        int(s,16)
+        return True
+    except ValueError:
+        return False
 
-  i = 0
-  a1 = 0
-  a2 = 0
-  b1 = 0
-  b2 = 0
-  c1 = ""
-  c2 = str(a2)+"-"+str(b2)
-  cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n{}".format(c2,12-i,c1))
-  result = await ctx2.send(embed=cal)
-  await ctx2.send("結果を入力してください(end or @0 で停止)")
-
-  for k in range(12):
-    i += 1
+  cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="0-0 @12")
+  result = await ctx.send(embed=cal)
+  moji = await ctx.send("結果を入力してください(end or @0 で停止)")
+  
+  f=0
+  g=0
+  h=''
+  for j in range(12):
     check1 = 0
     while check1 == 0:
-      rank = await client.wait_for('message',check=check)
-      rank = rank.content
-      await ctx2.channel.purge(limit=1)
+      rank = await client.wait_for('message',check=check)    
+      a = rank.content
+      b = []
+      await rank.delete()
+      if len(a)==6 or len(a)==7 or len(a)==8 or len(a)==9:
+        if is_int(a)==True:
+          check1 = 1
+        else:
+          pass
       
-      #print(rank)
-      if len(rank) == 6:        
-        check1 = 1
-        #print("OK")
-      elif rank == 'end':
-        await ctx2.send("即時終了")
-        break
-      elif rank == '.cal':
-        break
+      elif a == 'end':
+          await ctx.send("即時終了")
+          break
+      elif a == '.cal':
+          break
       else:
-        await ctx2.send("try again")
+          await ctx.send("try again")
     
-    ranklist = ''
-    a1 = 0
-    for j in range(6):
-      ranklist += str(int(rank[j],16))+" "
-      point = int(rank[j],16)
-      if point == 1:
-        point = 15
-      elif point == 2:
-        point = 12
-      else:
-        point = 13-point
-      a1 += point
-      #print(a1)
-
-    b1 = 82-a1
-    a2 += a1
-    b2 += b1
-    c1 += "race"+str(i).ljust(2)+" | "+str(a1)+"-"+str(b1)+" ("+str(a1-b1)+") | "+ranklist+"\n"
-    c2 = str(a2)+"-"+str(b2)+"\t("+str(a2-b2)+")"
-    cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n---------------------\n{}".format(c2,12-i,c1))
-    await result.edit(embed=cal)
-    #print(a1,a2,b1,b2,c1,c2)    
+    if len(a)==6:
+        for i in range(6):
+            b.append(int(a[i],16))    
+          
+    elif len(a)==7:
+        for i in range(5):
+            b.append(int(a[i]))
+        b.append(int(a[5:]))
         
+    elif len(a)==8:
+        for i in range(4):
+            b.append(int(a[i]))
+        b.append(int(a[4:6]))
+        b.append(int(a[6:]))
+    
+    elif len(a)==9:
+        for i in range(3):
+            b.append(int(a[i]))
+        b.append(int(a[3:5]))
+        b.append(int(a[5:7]))
+        b.append(int(a[7:]))
+        
+    c=str(b[0])+' '+str(b[1])+' '+str(b[2])+' '+str(b[3])+' '+str(b[4])+' '+str(b[5])
+    d=0
+    
+    for i in range(6):
+        point=b[i]
+        if point == 1:
+            point = 15
+        elif point == 2:
+            point = 12
+        else:
+            point = 13-point
+        d+=point
+    e=82-d
+    f+=d
+    g+=e
+    
+    h += "race"+str(j+1).ljust(2)+" | "+str(d)+"-"+str(e)+" ("+str(d-e)+") | "+c+"\n"
+    k = str(f)+"-"+str(g)+"\t("+str(f-g)+")"
+    cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n---------------------\n{}".format(k,13-j,h))    
+    await result.edit(embed=cal)
+    
     
 @client.command()
 async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt1 = 6, settime = 43200):

@@ -219,15 +219,15 @@ async def cal(ctx):
           elif len(a)==8:
               for i in range(4):
                   b.append(int(a[i]))
-                  b.append(int(a[4:6]))
-                  b.append(int(a[6:]))
+              b.append(int(a[4:6]))
+              b.append(int(a[6:]))
 
           elif len(a)==9:
               for i in range(3):
                   b.append(int(a[i]))
-                  b.append(int(a[3:5]))
-                  b.append(int(a[5:7]))
-                  b.append(int(a[7:]))
+              b.append(int(a[3:5]))
+              b.append(int(a[5:7]))
+              b.append(int(a[7:]))
           await rank.delete()
           if is_under12(b)==True:
                 check1=1

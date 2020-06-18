@@ -186,6 +186,11 @@ async def cal(ctx):
         return True
     except ValueError:
         return False
+  def is_under12(b):
+    if all(elem < 13 for elem in b):
+        check1 = 1
+    else:
+        ctx.send("Try again")
 
   cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="0-0 @12")
   result = await ctx.send(embed=cal)
@@ -202,8 +207,29 @@ async def cal(ctx):
       b = []      
       if len(a)==6 or len(a)==7 or len(a)==8 or len(a)==9:
         if is_int(a)==True:
-          check1 = 1
+          if len(a)==6:
+            for i in range(6):
+                b.append(int(a[i],16))    
+
+          elif len(a)==7:
+              for i in range(5):
+                  b.append(int(a[i]))
+              b.append(int(a[5:]))
+
+          elif len(a)==8:
+              for i in range(4):
+                  b.append(int(a[i]))
+                  b.append(int(a[4:6]))
+                  b.append(int(a[6:]))
+
+          elif len(a)==9:
+              for i in range(3):
+                  b.append(int(a[i]))
+                  b.append(int(a[3:5]))
+                  b.append(int(a[5:7]))
+                  b.append(int(a[7:]))
           await rank.delete()
+          is_under12(b)
         else:
           await ctx.send("try again")
       
@@ -212,28 +238,6 @@ async def cal(ctx):
           break
       elif a == '.cal':
           break          
-    
-    if len(a)==6:
-        for i in range(6):
-            b.append(int(a[i],16))    
-          
-    elif len(a)==7:
-        for i in range(5):
-            b.append(int(a[i]))
-        b.append(int(a[5:]))
-        
-    elif len(a)==8:
-        for i in range(4):
-            b.append(int(a[i]))
-        b.append(int(a[4:6]))
-        b.append(int(a[6:]))
-    
-    elif len(a)==9:
-        for i in range(3):
-            b.append(int(a[i]))
-        b.append(int(a[3:5]))
-        b.append(int(a[5:7]))
-        b.append(int(a[7:]))
         
     c=str(b[0])+' '+str(b[1])+' '+str(b[2])+' '+str(b[3])+' '+str(b[4])+' '+str(b[5])
     d=0

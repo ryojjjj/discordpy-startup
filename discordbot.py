@@ -305,6 +305,9 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
     await msg.add_reaction('↩')
     await msg.add_reaction('👋')
     #print(msg.id)
+    
+    atto = f'21@{cnt1} 22@{cnt2} 23@{cnt3} 24@{cnt4}'
+    atto1 = await ctx.send(atto)
 
     def check(reaction, user):
         emoji = str(reaction.emoji)
@@ -424,6 +427,9 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
         await msg.edit(embed=test)
         # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
         await msg.remove_reaction(str(reaction.emoji), user)
+        await atto1.delete()
+        atto = f'21@{cnt1} 22@{cnt2} 23@{cnt3} 24@{cnt4}'
+        atto1 = await ctx.send(atto)
 
 @client.command()
 async def rec(ctx1, about, cnt, settime2):
@@ -543,7 +549,9 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
     await msg.add_reaction('✖')
     await msg.add_reaction('↩')
     await msg.add_reaction('👋')
-    
+
+    atto = f'21@{cnt1} 22@{cnt2} 23@{cnt3} 24@{cnt4} 25@{cnt5} 26@{cnt6}'
+    atto1 = await ctx.send(atto)
     #print(msg.id)
 
     def check(reaction, user):
@@ -683,6 +691,9 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
         await msg.edit(embed=test)
         # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
         await msg.remove_reaction(str(reaction.emoji), user)
+        await atto1.delete()
+        atto = f'21@{cnt1} 22@{cnt2} 23@{cnt3} 24@{cnt4} 25@{cnt5} 26@{cnt6}'
+        atto1 = await ctx.send(atto)
 
 
 @client.command()
@@ -716,6 +727,8 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
     await msg.add_reaction('↩')
     await msg.add_reaction('👋')
     
+    atto = f'25@{cnt5} 26@{cnt6}'
+    atto1 = await ctx.send(atto)
     #print(msg.id)
 
     def check(reaction, user):
@@ -798,6 +811,9 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
         await msg.edit(embed=test)
         # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
         await msg.remove_reaction(str(reaction.emoji), user)
+        await atto1.delete()
+        atto = f'25@{cnt5} 26@{cnt6}'
+        atto1 = await ctx.send(atto)
 
 
 token = os.environ['DISCORD_BOT_TOKEN']

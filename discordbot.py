@@ -2,6 +2,7 @@ import discord
 import datetime
 import os
 import random
+import asyncio
 
 #https://ja.wikipedia.org/wiki/Unicode%E3%81%AEEmoji%E3%81%AE%E4%B8%80%E8%A6%A7
 
@@ -332,7 +333,9 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
                     if(i>=10):
                       await ctx.send("👋で遊ぶな😡")
                     else:
-                      await ctx.send("募集開始した人が👋を押すと動作を停止します。こまめに停止させることでbot全体の動作が軽くなります。")    
+                      inform = await ctx.send("募集開始した人が👋を押すと動作を停止します。こまめに停止させることでbot全体の動作が軽くなります。")  
+                      await asyncio.sleep(3)
+                      await inform.delete()
             
             if msg.id == reaction.message.id:
                 if str(reaction.emoji) == '🇦':
@@ -578,8 +581,10 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                     if(i>=10):
                       await ctx.send("👋で遊ぶな😡")
                     else:
-                      await ctx.send("募集開始した人が👋を押すと動作を停止します。こまめに停止させることでbot全体の動作が軽くなります。")
-                
+                      inform = await ctx.send("募集開始した人が👋を押すと動作を停止します。こまめに停止させることでbot全体の動作が軽くなります。")  
+                      await asyncio.sleep(3)
+                      await inform.delete()
+            
                 if str(reaction.emoji) == '🇦':
                     list1.append(user.name)
                     mem1.append(user.mention)
@@ -755,8 +760,10 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                     if(i>=10):
                       await ctx.send("👋で遊ぶな😡")
                     else:
-                      await ctx.send("募集開始した人が👋を押すと動作を停止します。こまめに停止させることでbot全体の動作が軽くなります。")
-                
+                      inform = await ctx.send("募集開始した人が👋を押すと動作を停止します。こまめに停止させることでbot全体の動作が軽くなります。")  
+                      await asyncio.sleep(3)
+                      await inform.delete()
+            
                 
                 if str(reaction.emoji) == '🇪':
                     if user.name in list5:

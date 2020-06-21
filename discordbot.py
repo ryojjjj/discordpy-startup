@@ -260,7 +260,7 @@ async def cal(ctx):
     
     h += "race"+str(j+1).ljust(2)+" | "+str(d)+"-"+str(e)+" ("+str(d-e)+") | "+c+"\n"
     k = str(f)+"-"+str(g)+"\t("+str(f-g)+")"
-    cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n---------------------\n{}".format(k,13-j,h))    
+    cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n---------------------\n{}".format(k,11-j,h))    
     await result.edit(embed=cal)
     
     

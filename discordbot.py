@@ -19,6 +19,7 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')  
+    await client.change_presence(activity=discord.Game(name='おさかな天国'))
 
 @client.command()
 async def fish(ctx2, about = "🐟🐟🐟 使い方 🐟🐟🐟"):

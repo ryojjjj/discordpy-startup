@@ -423,17 +423,17 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
                     else:
                         pass
 
-        test = discord.Embed(title=about,colour=0x1e90ff)
-        test.add_field(name=f"21@{cnt1} ", value=' '.join(list1), inline=False)
-        test.add_field(name=f"22@{cnt2} ", value=' '.join(list2), inline=False)
-        test.add_field(name=f"23@{cnt3} ", value=' '.join(list3), inline=False)
-        test.add_field(name=f"24@{cnt4} ", value=' '.join(list4), inline=False)
-        await msg.edit(embed=test)
-        # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
-        await msg.remove_reaction(str(reaction.emoji), user)
-        await atto1.delete()
-        atto = f'21@{cnt1} 22@{cnt2} 23@{cnt3} 24@{cnt4}'
-        atto1 = await ctx.send(atto)
+                test = discord.Embed(title=about,colour=0x1e90ff)
+                test.add_field(name=f"21@{cnt1} ", value=' '.join(list1), inline=False)
+                test.add_field(name=f"22@{cnt2} ", value=' '.join(list2), inline=False)
+                test.add_field(name=f"23@{cnt3} ", value=' '.join(list3), inline=False)
+                test.add_field(name=f"24@{cnt4} ", value=' '.join(list4), inline=False)
+                await msg.edit(embed=test)
+                # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
+                await msg.remove_reaction(str(reaction.emoji), user)
+                await atto1.delete()
+                atto = f'21@{cnt1} 22@{cnt2} 23@{cnt3} 24@{cnt4}'
+                atto1 = await ctx.send(atto)
 
 @client.command()
 async def rec(ctx1, about, cnt, settime2):
@@ -493,11 +493,11 @@ async def rec(ctx1, about, cnt, settime2):
                     
                     
                       
-        test2 = discord.Embed(title=about,colour=0xe74c3c)
-        test2.add_field(name=f"@{cnt} ", value=' '.join(list), inline=False)
-        await msg2.edit(embed=test2)
-        # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
-        await msg2.remove_reaction(str(reaction.emoji), user)
+                test2 = discord.Embed(title=about,colour=0xe74c3c)
+                test2.add_field(name=f"@{cnt} ", value=' '.join(list), inline=False)
+                await msg2.edit(embed=test2)
+                # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
+                await msg2.remove_reaction(str(reaction.emoji), user)
 
         
 @client.command()
@@ -687,19 +687,19 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                     else:
                         pass
 
-        test = discord.Embed(title=about,colour=0x1e90ff)
-        test.add_field(name=f"21@{cnt1} ", value=' '.join(list1), inline=False)
-        test.add_field(name=f"22@{cnt2} ", value=' '.join(list2), inline=False)
-        test.add_field(name=f"23@{cnt3} ", value=' '.join(list3), inline=False)
-        test.add_field(name=f"24@{cnt4} ", value=' '.join(list4), inline=False)
-        test.add_field(name=f"25@{cnt5} ", value=' '.join(list5), inline=False)
-        test.add_field(name=f"26@{cnt6} ", value=' '.join(list6), inline=False)
-        await msg.edit(embed=test)
-        # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
-        await msg.remove_reaction(str(reaction.emoji), user)
-        await atto1.delete()
-        atto = f'21@{cnt1} 22@{cnt2} 23@{cnt3} 24@{cnt4} 25@{cnt5} 26@{cnt6}'
-        atto1 = await ctx.send(atto)
+                test = discord.Embed(title=about,colour=0x1e90ff)
+                test.add_field(name=f"21@{cnt1} ", value=' '.join(list1), inline=False)
+                test.add_field(name=f"22@{cnt2} ", value=' '.join(list2), inline=False)
+                test.add_field(name=f"23@{cnt3} ", value=' '.join(list3), inline=False)
+                test.add_field(name=f"24@{cnt4} ", value=' '.join(list4), inline=False)
+                test.add_field(name=f"25@{cnt5} ", value=' '.join(list5), inline=False)
+                test.add_field(name=f"26@{cnt6} ", value=' '.join(list6), inline=False)
+                await msg.edit(embed=test)
+                # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
+                await msg.remove_reaction(str(reaction.emoji), user)
+                await atto1.delete()
+                atto = f'21@{cnt1} 22@{cnt2} 23@{cnt3} 24@{cnt4} 25@{cnt5} 26@{cnt6}'
+                atto1 = await ctx.send(atto)
 
 
 @client.command()
@@ -813,15 +813,15 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                     else:
                         pass
 
-        test = discord.Embed(title=about,colour=0x1e90ff)       
-        test.add_field(name=f"25@{cnt5} ", value=' '.join(list5), inline=False)
-        test.add_field(name=f"26@{cnt6} ", value=' '.join(list6), inline=False)
-        await msg.edit(embed=test)
-        # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
-        await msg.remove_reaction(str(reaction.emoji), user)
-        await atto1.delete()
-        atto = f'25@{cnt5} 26@{cnt6}'
-        atto1 = await ctx.send(atto)
+                test = discord.Embed(title=about,colour=0x1e90ff)       
+                test.add_field(name=f"25@{cnt5} ", value=' '.join(list5), inline=False)
+                test.add_field(name=f"26@{cnt6} ", value=' '.join(list6), inline=False)
+                await msg.edit(embed=test)
+                # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
+                await msg.remove_reaction(str(reaction.emoji), user)
+                await atto1.delete()
+                atto = f'25@{cnt5} 26@{cnt6}'
+                atto1 = await ctx.send(atto)
 
 
 token = os.environ['DISCORD_BOT_TOKEN']

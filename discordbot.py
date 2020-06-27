@@ -334,7 +334,6 @@ async def cal(ctx):
           await ctx.send("try again")
       
       elif a == 'end':
-          await ctx.send("即時終了")
           break
       elif a == '.cal':
           break          
@@ -359,6 +358,8 @@ async def cal(ctx):
     k = str(f)+"-"+str(g)+"\t("+str(f-g)+")"
     cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n---------------------\n{}".format(k,11-j,h))    
     await result.edit(embed=cal)
+  await moji.delete()
+  await ctx.send("即時終了")
     
     
 @client.command()

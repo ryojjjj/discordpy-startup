@@ -27,6 +27,92 @@ async def fish(ctx2, about = "🐟🐟🐟 使い方 🐟🐟🐟"):
   await ctx2.send(embed=help1)       
    
 @client.command()
+async def t(ctx):
+  def check(m):
+    return m.author.id == ctx.author.id
+  def check2(m):
+    try:
+        int(m.content)
+        return True
+    except ValueError:
+        return False
+  def check3(m):
+    try:
+        m=m.content.split()
+        if len(m)!=2:
+          return False
+        int(m[0])
+        int(m[1])
+        return True
+    except ValueError:
+        return False
+
+  msg = discord.Embed(title="全組数を入力してください")
+  msg2 = await ctx.send(embed=msg)
+  group = await client.wait_for('message',check=check)
+  n = int(group.content)
+  await group.delete()
+  msg = discord.Embed(title="得点上位がある場合は1を、無い場合は0を入力してください")
+  await msg2.edit(embed=msg) 
+  revival = await client.wait_for('message',check=check)
+  rev = int(revival.content)
+  if rev == 1:
+    msg = discord.Embed(title="得点上位の組数を入力してください")
+    await msg2.edit(embed=msg) 
+    number = await client.wait_for('message',check=check)
+    num = int(number.content)
+
+  a=[]
+  c=[]
+  a2=''
+  for i in range(n):
+    a.append(i+1)
+    a2 += str(i+1) + ' '
+    #c.append(0)
+  await msg2.delete()  
+  
+ 
+  msg = discord.Embed(title=f"集計未提出組@{n}",description=f"{a2}")
+  inform="集計をスレッドに書き込んだ進行役の方は自分の組数を #report にて入力してください。(例:7)"
+  if rev == 1:
+    inform="集計をスレッドに書き込んだ進行役の方は自分の組数と負けチームの最高得点を #report にて入力してください。(例:3 50)"
+  await ctx.send(inform)
+  
+  list = await ctx.send(embed=msg)
+  while len(a)!=0:
+    if rev == 0:
+      b = await client.wait_for('message',check=check2)
+      if int(b.content) in a:
+        a.remove(int(b.content))
+        a2 = ''
+        for i in range(len(a)):
+          a2 += str(a[i]) + ' '
+        msg = discord.Embed(title=f"集計未提出組@{len(a)}",description=f"{a2}")
+        await list.edit(embed=msg)
+    else:
+      b = await client.wait_for('message',check=check3)
+      b=b.content.split()
+      if int(b[0]) in a:
+        a.remove(int(b[0]))
+        a2 = ''
+        for i in range(len(a)):
+          a2 += str(a[i]) + ' '
+        #得点上位を記録
+        c.append([int((b[1])),int(b[0])])
+        c.sort(reverse=True)
+        c2=''
+        for i in range(min(len(c),num+10,n)):
+          if i==num:
+            c2 += "------------\n"
+          c2 += str(c[i][1]) + '組 ' + str(c[i][0]) + '点\n'
+        msg = discord.Embed(title=f"集計未提出組@{len(a)}",description=f"{a2}")
+        msg.add_field(name=f"各組の得点上位一覧(全{num}組)",value=c2)
+        await list.edit(embed=msg)
+  await ctx.send(f"集計終了 {ctx.author.mention}")
+  if rev == 1:
+    await ctx.send("同組に得点上位が2組以上いないか、得点上位のボーダーに同点がいないかを確認してください")
+
+@client.command()
 async def ran(ctx,arg):
   a=int(arg)
   await ctx.send(1+random.randrange(a))

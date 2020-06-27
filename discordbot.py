@@ -334,8 +334,10 @@ async def cal(ctx):
           await ctx.send("try again")
       
       elif a == 'end':
+          await ctx.send("即時終了")
           break
       elif a == '.cal':
+        　await ctx.send("即時終了")
           break          
         
     c=str(b[0])+' '+str(b[1])+' '+str(b[2])+' '+str(b[3])+' '+str(b[4])+' '+str(b[5])

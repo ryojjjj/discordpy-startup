@@ -116,7 +116,7 @@ async def t(ctx):
             msg.add_field(name=f"各組の得点上位一覧(全{num}組)",value=c2)
             await list.edit(embed=msg)
     except asyncio.TimeoutError:
-        
+        break
   await ctx.send(f"集計終了 {ctx.author.mention}")
   if rev == 1:
     await ctx.send("同組に得点上位が2組以上いないか、得点上位のボーダーに同点がいないかを確認してください")

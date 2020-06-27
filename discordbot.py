@@ -31,12 +31,16 @@ async def t(ctx):
   def check(m):
     return m.author.id == ctx.author.id
   def check2(m):
+    if m.guild.id != ctx.guild.id:
+      return False
     try:
         int(m.content)
         return True
     except ValueError:
         return False
   def check3(m):
+    if m.guild.id != ctx.guild.id:
+      return False
     try:
         m=m.content.split()
         if len(m)!=2:
@@ -56,11 +60,13 @@ async def t(ctx):
   await msg2.edit(embed=msg) 
   revival = await client.wait_for('message',check=check)
   rev = int(revival.content)
+  await revival.delete()
   if rev == 1:
     msg = discord.Embed(title="得点上位の組数を入力してください")
     await msg2.edit(embed=msg) 
     number = await client.wait_for('message',check=check)
     num = int(number.content)
+    await number.delete()
 
   a=[]
   c=[]
@@ -80,34 +86,37 @@ async def t(ctx):
   
   list = await ctx.send(embed=msg)
   while len(a)!=0:
-    if rev == 0:
-      b = await client.wait_for('message',check=check2)
-      if int(b.content) in a:
-        a.remove(int(b.content))
-        a2 = ''
-        for i in range(len(a)):
-          a2 += str(a[i]) + ' '
-        msg = discord.Embed(title=f"集計未提出組@{len(a)}",description=f"{a2}")
-        await list.edit(embed=msg)
-    else:
-      b = await client.wait_for('message',check=check3)
-      b=b.content.split()
-      if int(b[0]) in a:
-        a.remove(int(b[0]))
-        a2 = ''
-        for i in range(len(a)):
-          a2 += str(a[i]) + ' '
-        #得点上位を記録
-        c.append([int((b[1])),int(b[0])])
-        c.sort(reverse=True)
-        c2=''
-        for i in range(min(len(c),num+10,n)):
-          if i==num:
-            c2 += "------------\n"
-          c2 += str(c[i][1]) + '組 ' + str(c[i][0]) + '点\n'
-        msg = discord.Embed(title=f"集計未提出組@{len(a)}",description=f"{a2}")
-        msg.add_field(name=f"各組の得点上位一覧(全{num}組)",value=c2)
-        await list.edit(embed=msg)
+    try:
+        if rev == 0:
+          b = await client.wait_for('message',check=check2,timeout=5400)
+          if int(b.content) in a:
+            a.remove(int(b.content))
+            a2 = ''
+            for i in range(len(a)):
+              a2 += str(a[i]) + ' '
+            msg = discord.Embed(title=f"集計未提出組@{len(a)}",description=f"{a2}")
+            await list.edit(embed=msg)
+        else:
+          b = await client.wait_for('message',check=check3,timeout=5400)
+          b=b.content.split()
+          if int(b[0]) in a:
+            a.remove(int(b[0]))
+            a2 = ''
+            for i in range(len(a)):
+              a2 += str(a[i]) + ' '
+            #得点上位を記録
+            c.append([int((b[1])),int(b[0])])
+            c.sort(reverse=True)
+            c2=''
+            for i in range(min(len(c),num+10,n)):
+              if i==num:
+                c2 += "------------\n"
+              c2 += str(c[i][1]) + '組 ' + str(c[i][0]) + '点\n'
+            msg = discord.Embed(title=f"集計未提出組@{len(a)}",description=f"{a2}")
+            msg.add_field(name=f"各組の得点上位一覧(全{num}組)",value=c2)
+            await list.edit(embed=msg)
+    except asyncio.TimeoutError:
+        
   await ctx.send(f"集計終了 {ctx.author.mention}")
   if rev == 1:
     await ctx.send("同組に得点上位が2組以上いないか、得点上位のボーダーに同点がいないかを確認してください")

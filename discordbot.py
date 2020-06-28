@@ -601,29 +601,28 @@ async def rec(ctx1, about, cnt, settime2):
 @client.command()
 async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt1 = 6, settime = 43200):
     cnt1, settime = int(cnt1), float(settime)
-    a = ctx.guild.name
-    print(a)
-    #list.append(0)
-    #b = len(list)
-    #print(b)
   
+    list0 = [">"]
     list1 = [">"]
     list2 = [">"]
     list3 = [">"]
     list4 = [">"]
     list5 = [">"]
     list6 = [">"]
+    mem0 = []
     mem1 = []
     mem2 = []
     mem3 = []
     mem4 = []
     mem5 = []
     mem6 = []
+    cnt0 = 6
     cnt2 = 6
     cnt3 = 6
     cnt4 = 6
     cnt5 = 6
     cnt6 = 6
+    check0 = 0
     check1 = 0
     check2 = 0
     check3 = 0
@@ -633,6 +632,8 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
     
 
     test = discord.Embed(title=about,colour=0x1e90ff)
+    
+    test.add_field(name=f"20@{cnt0} ", value=' '.join(list0), inline=False)
     test.add_field(name=f"21@{cnt1} ", value=' '.join(list1), inline=False)
     test.add_field(name=f"22@{cnt2} ", value=' '.join(list2), inline=False)
     test.add_field(name=f"23@{cnt3} ", value=' '.join(list3), inline=False)
@@ -642,6 +643,8 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
     msg = await ctx.send(embed=test)
     #投票の欄
 
+    
+    await msg.add_reaction('🇴')
     await msg.add_reaction('🇦')
     await msg.add_reaction('🇧')
     await msg.add_reaction('🇨')
@@ -652,7 +655,7 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
     await msg.add_reaction('↩')
     await msg.add_reaction('👋')
 
-    atto = f'21@{cnt1} 22@{cnt2} 23@{cnt3} 24@{cnt4} 25@{cnt5} 26@{cnt6}'
+    atto = f'20@{cnt0} 21@{cnt1} 22@{cnt2} 23@{cnt3} 24@{cnt4} 25@{cnt5} 26@{cnt6}'
     atto1 = await ctx.send(atto)
     #print(msg.id)
 
@@ -684,6 +687,16 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                       await asyncio.sleep(3)
                       await inform.delete()
             
+                if str(reaction.emoji) == '🇴':
+                    list0.append(user.name)
+                    mem0.append(user.mention)
+                    cnt0 -= 1
+                    if cnt0 == 0:
+                      if check0 == 0:
+                        member0 = ' '.join(mem0)
+                        await ctx.send("20〆 {}".format(member0))
+                        check0 +=1
+                
                 if str(reaction.emoji) == '🇦':
                     list1.append(user.name)
                     mem1.append(user.mention)
@@ -747,6 +760,7 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                 if str(reaction.emoji) == '↩':
                     await msg.delete()
                     msg = await ctx.send(embed=test)  
+                    await msg.add_reaction('🇴')                   
                     await msg.add_reaction('🇦')
                     await msg.add_reaction('🇧')
                     await msg.add_reaction('🇨')
@@ -758,6 +772,10 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                     await msg.add_reaction('👋')        
       
                 elif str(reaction.emoji) == '✖':
+                    if user.name in list0:
+                        list0.remove(user.name)
+                        mem0.remove(user.mention)
+                        cnt0 += 1
                     if user.name in list1:
                         list1.remove(user.name)
                         mem1.remove(user.mention)
@@ -786,6 +804,7 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                         pass
 
                 test = discord.Embed(title=about,colour=0x1e90ff)
+                test.add_field(name=f"20@{cnt0} ", value=' '.join(list0), inline=False)
                 test.add_field(name=f"21@{cnt1} ", value=' '.join(list1), inline=False)
                 test.add_field(name=f"22@{cnt2} ", value=' '.join(list2), inline=False)
                 test.add_field(name=f"23@{cnt3} ", value=' '.join(list3), inline=False)
@@ -796,7 +815,7 @@ async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                 # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
                 await msg.remove_reaction(str(reaction.emoji), user)
                 await atto1.delete()
-                atto = f'21@{cnt1} 22@{cnt2} 23@{cnt3} 24@{cnt4} 25@{cnt5} 26@{cnt6}'
+                atto = f'20@{cnt0} 21@{cnt1} 22@{cnt2} 23@{cnt3} 24@{cnt4} 25@{cnt5} 26@{cnt6}'
                 atto1 = await ctx.send(atto)
 
 
@@ -809,29 +828,35 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
     #b = len(list)
     #print(b)
   
+    list0 = [">"]
     list5 = [">"]
     list6 = [">"]
+    mem0 = []
     mem5 = []
     mem6 = []
+    cnt0 = 6
     cnt5 = 6
     cnt6 = 6
+    check0 = 0
     check5 = 0
     check6 = 0
     
 
     test = discord.Embed(title=about,colour=0x1e90ff)
+    test.add_field(name=f"20@{cnt0} ", value=' '.join(list0), inline=False)
     test.add_field(name=f"25@{cnt5} ", value=' '.join(list5), inline=False)
     test.add_field(name=f"26@{cnt6} ", value=' '.join(list6), inline=False)
     msg = await ctx.send(embed=test)
     #投票の欄
 
+    await msg.add_reaction('🇴')
     await msg.add_reaction('🇪')
     await msg.add_reaction('🇫')
     await msg.add_reaction('✖')
     await msg.add_reaction('↩')
     await msg.add_reaction('👋')
     
-    atto = f'25@{cnt5} 26@{cnt6}'
+    atto = f'20@{cnt0} 25@{cnt5} 26@{cnt6}'
     atto1 = await ctx.send(atto)
     #print(msg.id)
 
@@ -864,6 +889,19 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                       await inform.delete()
             
                 
+                if str(reaction.emoji) == '🇴':
+                    if user.name in list0:
+                        pass
+                    else:
+                        list0.append(user.name)
+                        mem0.append(user.mention)
+                        cn0 -= 1
+                        if cnt0 == 0:
+                          if check0 == 0:
+                            member0 = ' '.join(mem0)
+                            await ctx.send("20〆 {}".format(member0))
+                            check0 +=1    
+                
                 if str(reaction.emoji) == '🇪':
                     if user.name in list5:
                         pass
@@ -893,13 +931,18 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                 if str(reaction.emoji) == '↩':
                     await msg.delete()
                     msg = await ctx.send(embed=test)                      
+                    await msg.add_reaction('🇴')
                     await msg.add_reaction('🇪')
                     await msg.add_reaction('🇫')
                     await msg.add_reaction('✖')
                     await msg.add_reaction('↩')
                     await msg.add_reaction('👋')      
     
-                elif str(reaction.emoji) == '✖':          
+                elif str(reaction.emoji) == '✖':    
+                    if user.name in list0:
+                        list0.remove(user.name)
+                        mem0.remove(user.mention)
+                        cnt0 += 1
                     if user.name in list5:
                         list5.remove(user.name)
                         mem5.remove(user.mention)
@@ -912,13 +955,14 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                         pass
 
                 test = discord.Embed(title=about,colour=0x1e90ff)       
+                test.add_field(name=f"20@{cnt0} ", value=' '.join(list0), inline=False)
                 test.add_field(name=f"25@{cnt5} ", value=' '.join(list5), inline=False)
                 test.add_field(name=f"26@{cnt6} ", value=' '.join(list6), inline=False)
                 await msg.edit(embed=test)
                 # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
                 await msg.remove_reaction(str(reaction.emoji), user)
                 await atto1.delete()
-                atto = f'25@{cnt5} 26@{cnt6}'
+                atto = f'20@{cnt0} 25@{cnt5} 26@{cnt6}'
                 atto1 = await ctx.send(atto)
 
 

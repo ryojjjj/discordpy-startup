@@ -329,14 +329,20 @@ async def cal(ctx):
           if is_under12(b)==True:
                 check1=1
           else:
-            await ctx.send("try again")
+            miss = await ctx.send("try again")
+            await asyncio.sleep(3)
+            await miss.delete()
         else:
-          await ctx.send("try again")
+          miss = await ctx.send("try again")
+          await asyncio.sleep(3)
+          await miss.delete()
       
       elif a == 'end':
+          await moji.delete()
           await ctx.send("即時終了")
           break
       elif a == '.cal':
+          await moji.delete()
           await ctx.send("即時終了")
           break          
         

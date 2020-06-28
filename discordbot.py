@@ -305,7 +305,10 @@ async def cal(ctx):
       if len(a)==6 or len(a)==7 or len(a)==8 or len(a)==9:
         if a == 'recall':
           await result.delete()
+          await moji.delete()
           result = await ctx.send(embed=cal)
+          moji = await ctx.send("結果を入力してください(recallで一番上に、end or @0 で停止)")
+          
         elif is_int(a)==True:
           if len(a)==6:
             for i in range(6):

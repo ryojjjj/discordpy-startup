@@ -303,7 +303,10 @@ async def cal(ctx):
       a = rank.content
       b = []      
       if len(a)==6 or len(a)==7 or len(a)==8 or len(a)==9:
-        if is_int(a)==True:
+        if a == 'recall':
+          await result.delete()
+          result = await ctx.send(embed=cal)
+        elif is_int(a)==True:
           if len(a)==6:
             for i in range(6):
                 b.append(int(a[i],16))    
@@ -336,10 +339,7 @@ async def cal(ctx):
           miss = await ctx.send("try again")
           await asyncio.sleep(3)
           await miss.delete()
-      
-      elif a == 'recall':
-          await result.delete()
-          result = await ctx.send(embed=cal) 
+            
       elif a == 'end':
           await moji.delete()
           await ctx.send("即時終了")

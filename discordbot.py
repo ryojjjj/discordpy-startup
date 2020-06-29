@@ -302,67 +302,67 @@ async def cal(ctx):
   for j in range(12):
     check1 = 0
     while check1 == 0:
-    try:
-        rank = await client.wait_for('message',timeout=600, check=check)
-    except asyncio.TimeoutError:        
-        await moji.delete()
-        await ctx.send("即時終了")       
-        break
-    else:
-      #rank = await client.wait_for('message',check=check)    
-      a = rank.content
-      b = []      
-      if len(a)==6 or len(a)==7 or len(a)==8 or len(a)==9:
-        if a == 'recall':
-          await result.delete()
-          await moji.delete()
-          result = await ctx.send(embed=cal)
-          moji = await ctx.send("結果を入力してください(recallで一番上に、end or @0 で停止)")
-          
-        elif is_int(a)==True:
-          if len(a)==6:
-            for i in range(6):
-                b.append(int(a[i],16))    
-
-          elif len(a)==7:
-              for i in range(5):
-                  b.append(int(a[i]))
-              b.append(int(a[5:]))
-
-          elif len(a)==8:
-              for i in range(4):
-                  b.append(int(a[i]))
-              b.append(int(a[4:6]))
-              b.append(int(a[6:]))
-
-          elif len(a)==9:
-              for i in range(3):
-                  b.append(int(a[i]))
-              b.append(int(a[3:5]))
-              b.append(int(a[5:7]))
-              b.append(int(a[7:]))
-          await rank.delete()
-          if is_under12(b)==True:
-                check1=1
-          else:
-            miss = await ctx.send("try again")
-            await asyncio.sleep(3)
-            await miss.delete()
+        try:
+            rank = await client.wait_for('message',timeout=600, check=check)
+        except asyncio.TimeoutError:        
+            await moji.delete()
+            await ctx.send("即時終了")       
+            break
         else:
-          miss = await ctx.send("try again")
-          await asyncio.sleep(3)
-          await miss.delete()
-            
-      elif a == 'end':
-          if rank.channel.id == ctx.channel.id:  
+          #rank = await client.wait_for('message',check=check)    
+          a = rank.content
+          b = []      
+          if len(a)==6 or len(a)==7 or len(a)==8 or len(a)==9:
+            if a == 'recall':
+              await result.delete()
               await moji.delete()
-              await ctx.send("即時終了")
-              break
-      elif a == '.cal':
-          if rank.channel.id == ctx.channel.id: 
-              await moji.delete()
-              await ctx.send("即時終了")
-              break          
+              result = await ctx.send(embed=cal)
+              moji = await ctx.send("結果を入力してください(recallで一番上に、end or @0 で停止)")
+
+            elif is_int(a)==True:
+              if len(a)==6:
+                for i in range(6):
+                    b.append(int(a[i],16))    
+
+              elif len(a)==7:
+                  for i in range(5):
+                      b.append(int(a[i]))
+                  b.append(int(a[5:]))
+
+              elif len(a)==8:
+                  for i in range(4):
+                      b.append(int(a[i]))
+                  b.append(int(a[4:6]))
+                  b.append(int(a[6:]))
+
+              elif len(a)==9:
+                  for i in range(3):
+                      b.append(int(a[i]))
+                  b.append(int(a[3:5]))
+                  b.append(int(a[5:7]))
+                  b.append(int(a[7:]))
+              await rank.delete()
+              if is_under12(b)==True:
+                    check1=1
+              else:
+                miss = await ctx.send("try again")
+                await asyncio.sleep(3)
+                await miss.delete()
+            else:
+              miss = await ctx.send("try again")
+              await asyncio.sleep(3)
+              await miss.delete()
+
+          elif a == 'end':
+              if rank.channel.id == ctx.channel.id:  
+                  await moji.delete()
+                  await ctx.send("即時終了")
+                  break
+          elif a == '.cal':
+              if rank.channel.id == ctx.channel.id: 
+                  await moji.delete()
+                  await ctx.send("即時終了")
+                  break          
         
     c=str(b[0])+' '+str(b[1])+' '+str(b[2])+' '+str(b[3])+' '+str(b[4])+' '+str(b[5])
     d=0

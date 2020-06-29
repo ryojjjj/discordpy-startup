@@ -277,6 +277,9 @@ async def cal(ctx):
     
   def check(m):
     return m.author.id == ctx.author.id
+  def check2(m):
+    return m.guild.id == ctx.guild.id:     
+        
   def is_int(s):
     try:
         int(s,16)
@@ -299,7 +302,14 @@ async def cal(ctx):
   for j in range(12):
     check1 = 0
     while check1 == 0:
-      rank = await client.wait_for('message',check=check)    
+    try:
+        rank = await client.wait_for('message',timeout=600, check=check)
+    except asyncio.TimeoutError:        
+        await moji.delete()
+        await ctx.send("即時終了")       
+        break
+    else:
+      #rank = await client.wait_for('message',check=check)    
       a = rank.content
       b = []      
       if len(a)==6 or len(a)==7 or len(a)==8 or len(a)==9:
@@ -344,13 +354,15 @@ async def cal(ctx):
           await miss.delete()
             
       elif a == 'end':
-          await moji.delete()
-          await ctx.send("即時終了")
-          break
+          if rank.channel.id == ctx.channel.id:  
+              await moji.delete()
+              await ctx.send("即時終了")
+              break
       elif a == '.cal':
-          await moji.delete()
-          await ctx.send("即時終了")
-          break          
+          if rank.channel.id == ctx.channel.id: 
+              await moji.delete()
+              await ctx.send("即時終了")
+              break          
         
     c=str(b[0])+' '+str(b[1])+' '+str(b[2])+' '+str(b[3])+' '+str(b[4])+' '+str(b[5])
     d=0

@@ -276,9 +276,9 @@ async def vote(ctx1):
 async def cal(ctx):
     
   def check(m):
+    if m.channel.id != ctx.channel.id:
+        return False
     return m.author.id == ctx.author.id
-  def check2(m):
-    return m.guild.id == ctx.guild.id
         
   def is_int(s):
     try:
@@ -352,15 +352,13 @@ async def cal(ctx):
               await asyncio.sleep(3)
               await miss.delete()
 
-          elif a == 'end':
-              if rank.channel.id == ctx.channel.id:  
-                  await moji.delete()
-                  await ctx.send("即時終了")
-                  break
+          elif a == 'end':              
+              await moji.delete()
+              await ctx.send("即時終了")
+              break
           elif a == '.cal':
-              if rank.channel.id == ctx.channel.id: 
-                  await moji.delete()                  
-                  break          
+              await moji.delete()                  
+              break          
         
     c=str(b[0])+' '+str(b[1])+' '+str(b[2])+' '+str(b[3])+' '+str(b[4])+' '+str(b[5])
     d=0

@@ -278,7 +278,7 @@ async def cal(ctx):
   def check(m):
     return m.author.id == ctx.author.id
   def check2(m):
-    return m.guild.id == ctx.guild.id:     
+    return m.guild.id == ctx.guild.id
         
   def is_int(s):
     try:

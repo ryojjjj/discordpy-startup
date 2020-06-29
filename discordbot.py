@@ -303,10 +303,9 @@ async def cal(ctx):
     check1 = 0
     while check1 == 0:
         try:
-            rank = await client.wait_for('message',timeout=600, check=check)
+            rank = await client.wait_for('message',timeout=900, check=check)
         except asyncio.TimeoutError:        
-            await moji.delete()
-            await ctx.send("即時終了")       
+            await moji.delete()     
             break
         else:
           #rank = await client.wait_for('message',check=check)    
@@ -360,8 +359,7 @@ async def cal(ctx):
                   break
           elif a == '.cal':
               if rank.channel.id == ctx.channel.id: 
-                  await moji.delete()
-                  await ctx.send("即時終了")
+                  await moji.delete()                  
                   break          
         
     c=str(b[0])+' '+str(b[1])+' '+str(b[2])+' '+str(b[3])+' '+str(b[4])+' '+str(b[5])

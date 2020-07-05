@@ -23,7 +23,7 @@ async def on_ready():
 
 @client.command()
 async def fish(ctx2, about = "🐟🐟🐟 使い方 🐟🐟🐟"):
-  help1 = discord.Embed(title=about,color=0xe74c3c,description=".s,.s2,.s3: 交流戦募集開始※12時間で停止 英語スタンプ→挙手 ×スタンプ→挙手全へ\n.rec: 募集開始(.rec 募集名 人数 制限時間(分))\n※募集開始した人の👋スタンプで募集終了\n.cal: 即時集計。順位は16進数でも入力可、recallで呼び戻し、endで強制終了\n.ran 数字: ランダムに数字出力\n.dev 数字 リスト: 組み分け\n.choose リスト: 選択\n.vote: 匿名アンケート(2択)\n作成者: さかな(@sakana8dx)\nさかなBot導入: https://discord.com/oauth2/authorize?client_id=619351049752543234&permissions=473152&scope=bot")
+  help1 = discord.Embed(title=about,color=0xe74c3c,description=".s,.s2,.s3: 交流戦募集開始※12時間で停止 英語スタンプ→挙手 ×スタンプ→挙手全へ\n.rec: 募集開始(.rec 募集名 人数 制限時間(分))\n※募集開始した人の👋スタンプで募集終了\n.cal: 即時集計。順位は16進数でも入力可、recallで呼び戻し、endで強制終了\n.ran 数字: ランダムに数字出力\n.dev 数字 リスト: 組み分け\n.choose リスト: 選択\n.vote: 匿名アンケート(2択)\n戦績記録機能の詳細は.fish2\n作成者: さかな(@sakana8dx)\nさかなBot導入: https://discord.com/oauth2/authorize?client_id=619351049752543234&permissions=473152&scope=bot")
   await ctx2.send(embed=help1)       
    
 @client.command()
@@ -294,7 +294,7 @@ async def cal(ctx):
 
   cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="0-0 @12")
   result = await ctx.send(embed=cal)
-  moji = await ctx.send("結果を入力してください(recallで一番上に、end or @0 で停止)")
+  moji = await ctx.send("結果を入力してください(recall or 777で一番上に、end or @0 で停止)")
   
   f=0
   g=0
@@ -316,7 +316,8 @@ async def cal(ctx):
               await result.delete()
               await moji.delete()
               result = await ctx.send(embed=cal)
-              moji = await ctx.send("結果を入力してください(recallで一番上に、end or @0 で停止)")
+              moji = await ctx.send("結果を入力してください(recall or 777で一番上に、end or @0 で停止)")
+              await rank.delete()
 
             elif is_int(a)==True:
               if len(a)==6:
@@ -359,6 +360,12 @@ async def cal(ctx):
           elif a == '.cal':
               await moji.delete()                  
               break          
+          elif a == '777':
+              await result.delete()
+              await moji.delete()
+              result = await ctx.send(embed=cal)
+              moji = await ctx.send("結果を入力してください(recall or 777で一番上に、end or @0 で停止)")
+              await rank.delete()
         
     c=str(b[0])+' '+str(b[1])+' '+str(b[2])+' '+str(b[3])+' '+str(b[4])+' '+str(b[5])
     d=0

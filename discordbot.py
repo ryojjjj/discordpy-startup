@@ -392,8 +392,8 @@ async def cal(ctx):
               await asyncio.sleep(3)
               await msg.delete()
               j-=1
-              
-        
+    
+    await msg.delete()    
     c=str(b[0])+' '+str(b[1])+' '+str(b[2])+' '+str(b[3])+' '+str(b[4])+' '+str(b[5])
     d=0
     
@@ -416,8 +416,7 @@ async def cal(ctx):
     cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n---------------------\n{}".format(k,11-j,h))    
     await result.edit(embed=cal)
     msg = await ctx.send(h2)
-    await asyncio.sleep(3)
-    await msg.delete() 
+     
     j+=1
   await moji.delete()
   await ctx.send("即時終了")

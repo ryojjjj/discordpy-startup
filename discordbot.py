@@ -309,6 +309,7 @@ async def cal(ctx):
   cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="0-0 @12")
   result = await ctx.send(embed=cal)
   moji = await ctx.send("結果を入力してください(recall or 777で一番上に、backで修正)")
+  msg = await ctx.send("")
   
   f=0
   g=0

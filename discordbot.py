@@ -308,12 +308,13 @@ async def cal(ctx):
 
   cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="0-0 @12")
   result = await ctx.send(embed=cal)
-  moji = await ctx.send("結果を入力してください(recall or 777で一番上に、end or @0 で停止)")
+  moji = await ctx.send("結果を入力してください(recall or 777で一番上に、backで修正)")
   
   f=0
   g=0
   h=''
-  for j in range(12):
+  j=0
+  while j!=12:
     check1 = 0
     while check1 == 0:
         try:
@@ -330,7 +331,7 @@ async def cal(ctx):
               await result.delete()
               await moji.delete()
               result = await ctx.send(embed=cal)
-              moji = await ctx.send("結果を入力してください(recall or 777で一番上に、end or @0 で停止)")
+              moji = await ctx.send("結果を入力してください(recall or 777で一番上に、backで修正)")
               await rank.delete()
 
             elif is_int(a)==True:
@@ -378,8 +379,20 @@ async def cal(ctx):
               await result.delete()
               await moji.delete()
               result = await ctx.send(embed=cal)
-              moji = await ctx.send("結果を入力してください(recall or 777で一番上に、end or @0 で停止)")
+              moji = await ctx.send("結果を入力してください(recall or 777で一番上に、backで修正)")
               await rank.delete()
+          elif a == 'back':
+              h=h.replace(h2,'')
+              f-=d
+              g-=e              
+              k = str(f)+"-"+str(g)+"\t("+str(f-g)+")"
+              cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n---------------------\n{}".format(k,11-j,h))    
+              await result.edit(embed=cal)
+              msg = await ctx.send("修正しました")
+              await asyncio.sleep(3)
+              await msg.delete()
+              j-=1
+              
         
     c=str(b[0])+' '+str(b[1])+' '+str(b[2])+' '+str(b[3])+' '+str(b[4])+' '+str(b[5])
     d=0
@@ -397,12 +410,18 @@ async def cal(ctx):
     f+=d
     g+=e
     
-    h += "race"+str(j+1).ljust(2)+" | "+str(d)+"-"+str(e)+" ("+str(d-e)+") | "+c+"\n"
+    h2= "race"+str(j+1).ljust(2)+" | "+str(d)+"-"+str(e)+" ("+str(d-e)+") | "+c+"\n"
+    h += h2
     k = str(f)+"-"+str(g)+"\t("+str(f-g)+")"
     cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n---------------------\n{}".format(k,11-j,h))    
     await result.edit(embed=cal)
+    msg = await ctx.send(h2)
+    await asyncio.sleep(3)
+    await msg.delete() 
+    j+=1
   await moji.delete()
   await ctx.send("即時終了")
+    
     
     
 @client.command()

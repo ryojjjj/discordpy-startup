@@ -418,6 +418,7 @@ async def cal(ctx):
     msg = await ctx.send(h2)
      
     j+=1
+  await msg.delete()
   await moji.delete()
   await ctx.send("即時終了")
     

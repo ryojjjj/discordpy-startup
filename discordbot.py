@@ -386,7 +386,7 @@ async def cal(ctx):
               f-=d
               g-=e              
               k = str(f)+"-"+str(g)+"\t("+str(f-g)+")"
-              cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n---------------------\n{}".format(k,11-j,h))    
+              cal = discord.Embed(title="🐟即時集計🐟",color=0xe74c3c,description="{} @{}\n---------------------\n{}".format(k,11-j+2,h))    
               await result.edit(embed=cal)
               msg = await ctx.send("修正しました")
               await asyncio.sleep(3)

@@ -398,8 +398,8 @@ async def s(ctx): #.sの機能
       ws.append_row([str(ctx.guild.id)])
       list=ws.col_values(1)
       row=list.index(a)+1
-      for i in range(22):
-          ws.update_cell(row,i+2,0)
+      #for i in range(22):
+      ws.update_cell(row,23,0)
 
     b=ws.row_values(row)
     for i in range(7):
@@ -446,8 +446,8 @@ async def s2(ctx): #.sの機能
       ws.append_row([str(ctx.guild.id)])
       list=ws.col_values(1)
       row=list.index(a)+1
-      for i in range(22):
-          ws.update_cell(row,i+2,0)
+      #for i in range(22):
+      ws.update_cell(row,23,0)
 
     b=ws.row_values(row)
     for i in range(7):

@@ -350,7 +350,7 @@ async def cal(ctx):
   await moji.delete()
   await ctx.send("即時終了")
     
-
+"""
 async def add(channel,row,n,name,mention):
     b=ws.row_values(row)
     if mention in b[n-11]: #21→3,10,17
@@ -365,6 +365,7 @@ async def add(channel,row,n,name,mention):
         ws.update_cell(row,n-17,b[n-18])
         ws.update_cell(row,n-10,b[n-11])
         ws.update_cell(row,n-3,b[n-4])
+"""
      
      
 @client.command()
@@ -386,7 +387,7 @@ async def mention(ctx,n): #.sの機能
         b=ws.row_values(row)
         await ctx.send(b[int(n)-11])
 
-
+"""
 @client.command()
 async def s(ctx): #.sの機能
     msg=await ctx.send("Loading...")
@@ -575,8 +576,7 @@ async def on_raw_reaction_add(payload):
                 else:
                     msg2=await channel.send(f"20@{b[16]} 21@{b[17]} 22@{b[18]} 23@{b[19]} 24@{b[20]} 25@{b[21]} 26@{b[22]}")
                 ws.update_cell(row,25,str(msg2.id))    
-    
-"""    
+       
 @client.command()
 async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt1 = 6, settime = 43200):
     cnt1, settime = int(cnt1), float(settime)
@@ -745,7 +745,183 @@ async def s(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt
                 await atto1.delete()
                 atto = f'21@{cnt1} 22@{cnt2} 23@{cnt3} 24@{cnt4}'
                 atto1 = await ctx.send(atto)
+"""
 
+async def add(channel,row,n,name,mention):
+    b=ws.row_values(row)
+    if mention in b[n-11]: #21→3,10,17
+        b[n-18]=b[n-18].replace(name,'')
+        b[n-11]=b[n-11].replace(mention,'')
+        b[n-4] = int(b[n-4])+1
+
+    else:
+        b[n-18] += name
+        b[n-11] += mention
+        b[n-4] = int(b[n-4])-1
+        if b[n-4] == 0:
+            await channel.send(f'{n}〆 {b[n-11]}')
+
+    ws.update_cell(row,n-17,b[n-18])
+    ws.update_cell(row,n-10,b[n-11])
+    ws.update_cell(row,n-3,b[n-4])
+    
+
+
+@client.command()
+async def s(ctx): #.sの機能
+    a=str(ctx.guild.id)
+    try:
+      list=ws.col_values(1)
+      row=list.index(a)+1
+    except:
+      ws.append_row([str(ctx.guild.id)])
+      list=ws.col_values(1)
+      row=list.index(a)+1
+      #for i in range(22):
+      #ws.update_cell(row,23,0)
+
+    b=ws.range(row,3,row,24)
+    #b=ws.row_values(row)
+    for i in range(7):
+        b[i+1].value='> '
+    for i in range(7):
+        b[i+8].value=''
+    for i in range(7):
+        b[i+15].value=6
+    b[21].value=1
+    ws.update_cells(b)
+                    
+    now=datetime.datetime.now()
+    month=now.month
+    day=now.day
+    text=f"交流戦募集 {month}月{day}日"
+    test = discord.Embed(title=text,colour=0x1e90ff)
+    test.add_field(name=f"21@6 ", value='>', inline=False)
+    test.add_field(name=f"22@6 ", value='>', inline=False)
+    test.add_field(name=f"23@6 ", value='>', inline=False)
+    test.add_field(name=f"24@6 ", value='>', inline=False)
+    msg = await ctx.send(embed=test)
+    await msg.add_reaction('🇦')
+    await msg.add_reaction('🇧')
+    await msg.add_reaction('🇨')
+    await msg.add_reaction('🇩')
+    await msg.add_reaction('↩')
+    await msg.add_reaction('🔁')
+    msg2=await ctx.send(f"21@6 22@6 23@6 24@6")
+    ws.update_cell(row,2,str(msg.id))                
+    ws.update_cell(row,25,str(msg2.id))                
+
+
+#-----------------------------------------------------
+@client.event  
+async def on_raw_reaction_add(payload):
+    #print(payload.guild_id)
+    channel = client.get_channel(payload.channel_id)
+    msg=await channel.fetch_message(payload.message_id)
+    if msg.author.id == botid:
+        if payload.member.bot == False:
+            list=ws.col_values(1)
+            row=list.index(str(payload.guild_id))+1
+            b=ws.row_values(row)
+            if msg.id == int(b[1]):
+                await msg.remove_reaction(str(payload.emoji),payload.member)
+                name=payload.member.name+' '
+                mention='<@!'+str(payload.member.id)+'>'+' '
+                if str(payload.emoji) == '🇴':
+                    n=20
+                    await add(channel,row,n,name,mention)
+                if str(payload.emoji) == '🇦':
+                    n=21
+                    await add(channel,row,n,name,mention)
+                if str(payload.emoji) == '🇧':
+                    n=22
+                    await add(channel,row,n,name,mention)
+                if str(payload.emoji) == '🇨':
+                    n=23
+                    await add(channel,row,n,name,mention)
+                if str(payload.emoji) == '🇩':
+                    n=24
+                    await add(channel,row,n,name,mention)
+                if str(payload.emoji) == '🇪':
+                    n=25
+                    await add(channel,row,n,name,mention)
+                if str(payload.emoji) == '🇫':
+                    n=26
+                    await add(channel,row,n,name,mention)                   
+                      
+                b=ws.row_values(row) #21→3,10,17
+                now=datetime.datetime.now()
+                month=now.month
+                day=now.day
+                text=f"交流戦募集 {month}月{day}日"
+                test = discord.Embed(title=text,colour=0x1e90ff)
+                if int(b[23])==2:
+                    test.add_field(name=f"20@{b[16]} ", value=b[2], inline=False)
+                test.add_field(name=f"21@{b[17]} ", value=b[3], inline=False)
+                test.add_field(name=f"22@{b[18]} ", value=b[4], inline=False)
+                test.add_field(name=f"23@{b[19]} ", value=b[5], inline=False)
+                test.add_field(name=f"24@{b[20]} ", value=b[6], inline=False)
+                if int(b[23])==2:
+                    test.add_field(name=f"25@{b[21]} ", value=b[7], inline=False)
+                    test.add_field(name=f"26@{b[22]} ", value=b[8], inline=False)
+
+                if str(payload.emoji) == '🔁':
+                    if int(b[23])==2:
+                      ws.update_cell(row,24,1)
+                      b[23]=1
+                    else:
+                      ws.update_cell(row,24,2)  
+                      b[23]=2
+                    await msg.delete()
+                    test = discord.Embed(title=text,colour=0x1e90ff)
+                    if int(b[23])==2:
+                        test.add_field(name=f"20@{b[16]} ", value=b[2], inline=False)
+                    test.add_field(name=f"21@{b[17]} ", value=b[3], inline=False)
+                    test.add_field(name=f"22@{b[18]} ", value=b[4], inline=False)
+                    test.add_field(name=f"23@{b[19]} ", value=b[5], inline=False)
+                    test.add_field(name=f"24@{b[20]} ", value=b[6], inline=False)
+                    if int(b[23])==2:
+                        test.add_field(name=f"25@{b[21]} ", value=b[7], inline=False)
+                        test.add_field(name=f"26@{b[22]} ", value=b[8], inline=False)
+                    msg = await channel.send(embed=test)
+                    if int(b[23])==2:
+                        await msg.add_reaction('🇴')
+                    await msg.add_reaction('🇦')
+                    await msg.add_reaction('🇧')
+                    await msg.add_reaction('🇨')
+                    await msg.add_reaction('🇩')
+                    if int(b[23])==2:
+                        await msg.add_reaction('🇪')
+                        await msg.add_reaction('🇫')
+                    await msg.add_reaction('↩')
+                    await msg.add_reaction('🔁')
+                    ws.update_cell(row,2,str(msg.id)) 
+
+                if str(payload.emoji) == '↩':
+                    await msg.delete()
+                    msg = await channel.send(embed=test)
+                    if int(b[23])==2:
+                        await msg.add_reaction('🇴')
+                    await msg.add_reaction('🇦')
+                    await msg.add_reaction('🇧')
+                    await msg.add_reaction('🇨')
+                    await msg.add_reaction('🇩')
+                    if int(b[23])==2:
+                        await msg.add_reaction('🇪')
+                        await msg.add_reaction('🇫')
+                    await msg.add_reaction('↩')
+                    await msg.add_reaction('🔁')
+                    ws.update_cell(row,2,str(msg.id))
+                else:
+                    await msg.edit(embed=test)
+
+                msg2=await channel.fetch_message(int(b[24]))
+                await msg2.delete()
+                if int(b[23])==1:
+                    msg2=await channel.send(f"21@{b[17]} 22@{b[18]} 23@{b[19]} 24@{b[20]}")
+                else:
+                    msg2=await channel.send(f"20@{b[16]} 21@{b[17]} 22@{b[18]} 23@{b[19]} 24@{b[20]} 25@{b[21]} 26@{b[22]}")
+                ws.update_cell(row,25,str(msg2.id))    
                 
 @client.command()
 async def rec(ctx1, about, cnt, settime2):

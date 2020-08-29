@@ -984,7 +984,7 @@ async def rec(ctx1, about, cnt, settime2):
                 # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
                 await msg2.remove_reaction(str(reaction.emoji), user)
 
-        
+"""        
 @client.command()
 async def s2(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cnt1 = 6, settime = 43200):
     cnt1, settime = int(cnt1), float(settime)
@@ -1372,7 +1372,7 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                 await atto1.delete()
                 atto = f'20@{cnt0} 25@{cnt5} 26@{cnt6}'
                 atto1 = await ctx.send(atto)
-"""
+
                
 @client.command()
 async def fish2(ctx, about = "🐟🐟🐟 戦績記録使い方 🐟🐟🐟"):

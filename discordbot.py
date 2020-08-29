@@ -1373,7 +1373,7 @@ async def s3(ctx, about = "交流戦募集 {}".format(datetime.date.today()), cn
                 atto = f'20@{cnt0} 25@{cnt5} 26@{cnt6}'
                 atto1 = await ctx.send(atto)
 """
-"""                
+               
 @client.command()
 async def fish2(ctx, about = "🐟🐟🐟 戦績記録使い方 🐟🐟🐟"):
   help1 = discord.Embed(title=about,color=0xe74c3c,description=".p 点数: 個人の結果記録,符号＋点数を入力する(負けた試合は負),例:.p 100,.p -77\n.r 点差 チーム名: 交流戦の結果記録,例:.r 40 IsK,.r -50 Lv\n.revise 点数: 個人の結果修正,例:.p -80を消す→.revise -80\n.stats/.teamstats/.history: 戦績\n.vs チーム名: 対象チームとの戦績確認\n.rename/.teamrename: 名前の変更\n.reset/.teamreset: 戦績(statsの内容)リセット\n.teamdelete: 対戦履歴削除\n作成者: さかな(@sakana8dx)\nさかなBot導入: https://discord.com/oauth2/authorize?client_id=619351049752543234&permissions=473152&scope=bot")

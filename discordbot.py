@@ -402,7 +402,7 @@ async def add(channel,row,n,name,mention):
         b[n-11].value += mention
         b[n-4].value = int(b[n-4].value)-1
         if b[n-4].value == 0:
-            await channel.send(f'{n}〆 {b[n-11]}')
+            await channel.send(f'{n}〆 {b[n-11].value}')
     
     ws.update_cells(b)
 

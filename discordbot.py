@@ -422,11 +422,11 @@ async def s(ctx): #.sの機能
     b=ws.range(row,3,row,24)
     #b=ws.row_values(row)
     for i in range(7):
-        b[i+1].value='> '
+        b[i].value='> '
     for i in range(7):
-        b[i+8].value=''
+        b[i+7].value=''
     for i in range(7):
-        b[i+15].value=6
+        b[i+14].value=6
     b[21].value=1
     ws.update_cells(b)
                     

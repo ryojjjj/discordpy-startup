@@ -639,7 +639,7 @@ async def mt(ctx): #ラウンジの集計
         team=int(msg[0])
         num=int(12/team)
         ok=0
-        OK2=0
+        ok2=0
         while ok==0:
             await ctx.send(f'下記順番通りに得点を入力してください. Type scores.(例: 100 90 12+70 ...)\n{msg2[2:]}')
             try:

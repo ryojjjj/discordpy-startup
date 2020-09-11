@@ -639,12 +639,15 @@ async def mt(ctx): #ラウンジの集計
         team=int(msg[0])
         num=int(12/team)
         ok=0
+        OK2=0
         while ok==0:
             await ctx.send(f'下記順番通りに得点を入力してください. Type scores.(例: 100 90 12+70 ...)\n{msg2[2:]}')
             try:
                 score=await client.wait_for('message',timeout=300,check=check)
             except asyncio.TimeoutError:
-                await ctx.send('timeout')            
+                await ctx.send('timeout') 
+                ok2=1
+                break
             else:
                 score=score.content
                 score=score.split()
@@ -652,19 +655,20 @@ async def mt(ctx): #ラウンジの集計
                     ok=1
                 else:
                     await ctx.send('エラー: もう一度入力してください. 12名分の得点を正しく入力してください.')
-        text=''
-        k=0
-        if team==1:
-            for i in range(12):
-                text=f'{text}{msg[i+1]} {score[i]}\n'
-        else:
-            for i in range(team):
-                text=f'{text}Team{i+1}\n'
-                for j in range(num):
-                    k=k+1
-                    text=f'{text}{msg[k]} {score[k-1]}\n'
-        await ctx.send(text)
-        await ctx.send("上記内容をコピーし 'https://hlorenzi.github.io/mk8d_ocr/table.html' にペーストしてください")
+        if ok2==0:
+            text=''
+            k=0
+            if team==1:
+                for i in range(12):
+                    text=f'{text}{msg[i+1]} {score[i]}\n'
+            else:
+                for i in range(team):
+                    text=f'{text}Team{i+1}\n'
+                    for j in range(num):
+                        k=k+1
+                        text=f'{text}{msg[k]} {score[k-1]}\n'
+            await ctx.send(text)
+            await ctx.send("上記内容をコピーし 'https://hlorenzi.github.io/mk8d_ocr/table.html' にペーストしてください")
         
     else:
         await ctx.send('エラー')

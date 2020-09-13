@@ -641,6 +641,8 @@ async def mt(ctx): #ラウンジの集計
     if '!scoreboard' in msg and 'Poll Ended!' in msg:
         a=msg.find('!scoreboard')
         msg2=msg[a+12:]
+        if msg2[len(msg2)-1]=='`':
+            msg2=msg2[0:len(msg2)-1]
         msg=msg2.split()
         team=int(msg[0])
         num=int(12/team)

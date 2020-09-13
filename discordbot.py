@@ -425,7 +425,7 @@ async def s(ctx): #.sの機能
       #for i in range(22):
       #ws.update_cell(row,23,0)
 
-    b=ws.range(row,3,row,24)
+    b=ws.range(row,3,row,26)
     #b=ws.row_values(row)
     for i in range(7):
         b[i].value='> '
@@ -434,12 +434,14 @@ async def s(ctx): #.sの機能
     for i in range(7):
         b[i+14].value=6
     b[21].value=1
-    ws.update_cells(b)
-                    
     now=datetime.datetime.now()
     month=now.month
     day=now.day
-    text=f"交流戦募集 {month}月{day}日"
+    text=f"{month}月{day}日"
+    b[23].value=text
+    ws.update_cells(b)
+    
+    text=f"交流戦募集 {month}月{day}日" 
     test = discord.Embed(title=text,colour=0x1e90ff)
     test.add_field(name=f"21@6 ", value='>', inline=False)
     test.add_field(name=f"22@6 ", value='>', inline=False)

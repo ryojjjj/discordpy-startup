@@ -9,16 +9,6 @@ import json
 from oauth2client.service_account import ServiceAccountCredentials 
 
 #https://ja.wikipedia.org/wiki/Unicode%E3%81%AEEmoji%E3%81%AE%E4%B8%80%E8%A6%A7
-"""
-sheetkey = os.environ['SHEETKEY']
-path = os.environ['MAIL']
-scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-credentials = ServiceAccountCredentials.from_json_keyfile_name(path, scope)
-gc = gspread.authorize(credentials)
-wb = gc.open_by_key(sheetkey)
-ws = wb.worksheet("戦績記録")
-ws2 = wb.worksheet("交流戦記録")  
-"""
 
 sheet = os.environ['SHEETKEY']
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']    
@@ -376,25 +366,6 @@ async def mention(ctx,n): #.sの機能
         b=ws.row_values(row)
         await ctx.send(b[int(n)-11])
         
-"""
-async def add(channel,row,n,name,mention):
-    b=ws.row_values(row)
-    if mention in b[n-11]: #21→3,10,17
-        b[n-18]=b[n-18].replace(name,'')
-        b[n-11]=b[n-11].replace(mention,'')
-        b[n-4] = int(b[n-4])+1
-
-    else:
-        b[n-18] += name
-        b[n-11] += mention
-        b[n-4] = int(b[n-4])-1
-        if b[n-4] == 0:
-            await channel.send(f'{n}〆 {b[n-11]}')
-
-    ws.update_cell(row,n-17,b[n-18])
-    ws.update_cell(row,n-10,b[n-11])
-    ws.update_cell(row,n-3,b[n-4])
-"""
 
 async def add(channel,row,n,name,mention):
     b=ws.range(row,1,row,24)

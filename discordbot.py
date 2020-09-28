@@ -41,6 +41,78 @@ async def on_ready():
     print('------')  
     await client.change_presence(activity=discord.Game(name='おさかな天国'))
 
+#-----------------------------------------------------
+ws2 = wb.worksheet("メモ")
+
+@client.command()
+async def set(ctx,n): 
+    def check(m):
+        return m.author.id == ctx.author.id
+    def check2(m):
+        try:
+            m=int(m)
+        except ValueError:
+            return False
+        else:
+            if m>0 and m<11:
+                return True
+            else:
+                return False
+
+    if check2(n)==True:
+        n=int(n)        
+        a=str(ctx.guild.id)
+        try:
+            list=ws2.col_values(1)
+            row=list.index(a)+1
+        except:
+            ws2.append_row([str(ctx.guild.id)])
+            list=ws2.col_values(1)
+            row=list.index(a)+1
+
+        await ctx.send('名前を入力してください')
+        msg = await client.wait_for('message',check=check)
+        await ctx.send('内容を入力してください')
+        msg2 = await client.wait_for('message',check=check)
+        ws2.update_cell(row,2*n,msg.content)
+        ws2.update_cell(row,2*n+1,msg2.content)
+        await ctx.send('登録が完了しました')
+
+#-----------------------------------------------------
+
+@client.command()
+async def memo(ctx,n): 
+    def check2(m):
+        try:
+            m=int(m)
+        except ValueError:
+            return False
+        else:
+            if m>0 and m<11:
+                return True
+            else:
+                return False
+    a=str(ctx.guild.id)
+    list=ws2.col_values(1)
+    row=list.index(a)+1
+    b=ws2.row_values(row)
+    if n=='all':
+        text=''
+        print(b,len(b))
+        n=(len(b)-1)//2
+        for i in range(n):
+            text=f'{text}memo{i+1}: {b[2*i+2]}\n'
+        await ctx.send(text)
+    elif check2(n)==True:
+        if b[2*int(n)]!='':
+            await ctx.send(b[2*int(n)])
+        else:
+            await ctx.send(f'メモ{n}は未登録です')    
+    elif n in b:
+        n=b.index(n)+1
+        await ctx.send(b[n])
+    else:
+        await ctx.send('未登録の内容です')
     
 @client.command()
 async def suse(ctx): #.sの説明

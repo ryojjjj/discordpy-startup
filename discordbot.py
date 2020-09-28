@@ -29,6 +29,7 @@ credentials = ServiceAccountCredentials.from_json_keyfile_dict(credential, scope
 gc = gspread.authorize(credentials)
 wb = gc.open_by_key(sheet)
 ws = wb.worksheet("挙手管理") 
+ws2 = wb.worksheet("メモ")
 
 botid=619351049752543234 #fishのid
 
@@ -42,7 +43,6 @@ async def on_ready():
     await client.change_presence(activity=discord.Game(name='おさかな天国'))
 
 #-----------------------------------------------------
-ws2 = wb.worksheet("メモ")
 
 @client.command()
 async def set(ctx,n): 

@@ -102,7 +102,7 @@ async def memo(ctx,n):
     if n=='all':
         text=''
         for i in range(10):
-            text=f'{text}memo{i+1}: {b[2*i+2]}\n'
+            text=f'{text}memo{i+1} {b[2*i+1]}: {b[2*i+2]}\n'
         await ctx.send(text)
     elif check2(n)==True:
         if b[2*int(n)]!='':

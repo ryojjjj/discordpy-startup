@@ -79,7 +79,7 @@ async def set(ctx,n):
         ws2.update_cell(row,2*n+1,msg2.content)
         await ctx.send('登録が完了しました')
      
-     else:
+    else:
         await ctx.send('1~10の数字を入力してください (.set <数字>)')
       
 #-----------------------------------------------------

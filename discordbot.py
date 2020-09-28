@@ -69,7 +69,8 @@ async def set(ctx,n):
             ws2.append_row([str(ctx.guild.id)])
             list=ws2.col_values(1)
             row=list.index(a)+1
-
+            ws2.update_cell(row,22,0)
+        
         await ctx.send('名前を入力してください')
         msg = await client.wait_for('message',check=check)
         await ctx.send('内容を入力してください')
@@ -77,6 +78,8 @@ async def set(ctx,n):
         ws2.update_cell(row,2*n,msg.content)
         ws2.update_cell(row,2*n+1,msg2.content)
         await ctx.send('登録が完了しました')
+        
+
 
 #-----------------------------------------------------
 
@@ -98,9 +101,7 @@ async def memo(ctx,n):
     b=ws2.row_values(row)
     if n=='all':
         text=''
-        print(b,len(b))
-        n=(len(b)-1)//2
-        for i in range(n):
+        for i in range(10):
             text=f'{text}memo{i+1}: {b[2*i+2]}\n'
         await ctx.send(text)
     elif check2(n)==True:
@@ -113,6 +114,8 @@ async def memo(ctx,n):
         await ctx.send(b[n])
     else:
         await ctx.send('未登録の内容です')
+        
+#-----------------------------------------------------
     
 @client.command()
 async def suse(ctx): #.sの説明

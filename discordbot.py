@@ -697,6 +697,7 @@ async def mt(ctx): #ラウンジの集計
                 await ctx.send('timeout')            
             else:
                 score=score.content
+                score=score.replace('+','%2B')                
                 score=score.split()
                 if len(score)==12:
                     ok=1

@@ -120,8 +120,8 @@ async def memo(ctx,n):
     
 @client.command()
 async def suse(ctx): #.sの説明
-    text='交流戦挙手方法\n挙手: 指定時間に対応するスタンプ(↓↓↓)を押す\n挙手取り下げ: 取り下げる時間のスタンプを再び押す\n↩: 募集文をチャンネルの一番下に持ってくる\n🔁: 募集時間帯の切り替え(21~24 or 20~26)\n\n20→🇴 21→🇦 22→🇧 23→🇨 24→🇩 25→🇪 26→🇫'
-    await ctx.send(text)
+  text='交流戦挙手方法\n挙手: 指定時間に対応するスタンプ(↓↓↓)を押す\n挙手取り下げ: 取り下げる時間のスタンプを再び押す\n↩: 募集文をチャンネルの一番下に持ってくる\n🔁: 募集時間帯の切り替え(21~24 or 20~26)\n\n20→🇴 21→🇦 22→🇧 23→🇨 24→🇩 25→🇪 26→🇫'
+  await ctx.send(text)
     
     
 @client.command()
@@ -617,61 +617,7 @@ async def on_raw_reaction_add(payload):
                     msg2=await channel.send(f"20@{b[16]} 21@{b[17]} 22@{b[18]} 23@{b[19]} 24@{b[20]} 25@{b[21]} 26@{b[22]}")
                 ws.update_cell(row,25,str(msg2.id))    
                 
-"""                
-#-----------------------------------------------------    
-@client.command()
-async def mt(ctx): #ラウンジの集計
-    def check(m):
-        return m.author.id == ctx.author.id
-
-    await ctx.send("MogiBotの'Poll Ended!'から始まる文章をコピーして貼り付けてください.\ncopy the message, starts with 'Poll Ended!'' and paste here")
-    msg = await client.wait_for('message',check=check)
-    msg=msg.content
-    if '!scoreboard' in msg and 'Poll Ended!' in msg:
-        a=msg.find('!scoreboard')
-        msg2=msg[a+12:]
-        if msg2[len(msg2)-1]=='`':
-            msg2=msg2[0:len(msg2)-1]
-        msg=msg2.split()
-        team=int(msg[0])
-        num=int(12/team)
-        ok=0
-        ok2=0
-        while ok==0:
-            await ctx.send(f'下記順番通りに得点を入力してください. Type scores.(例: 100 90 12+70 ...)\n{msg2[2:]}')
-            try:
-                score=await client.wait_for('message',timeout=300,check=check)
-            except asyncio.TimeoutError:
-                await ctx.send('timeout') 
-                ok2=1
-                break
-            else:
-                score=score.content
-                score=score.split()
-                if len(score)==12:
-                    ok=1
-                else:
-                    await ctx.send('エラー: もう一度入力してください. 12名分の得点を正しく入力してください.')
-        if ok2==0:
-            text=''
-            k=0
-            if team==1:
-                for i in range(12):
-                    text=f'{text}{msg[i+1]} {score[i]}\n'
-            else:
-                for i in range(team):
-                    text=f'{text}Team{i+1}\n'
-                    for j in range(num):
-                        k=k+1
-                        text=f'{text}{msg[k]} {score[k-1]}\n'
-            await ctx.send(text)
-            await ctx.send("上記内容をコピーし 'https://hlorenzi.github.io/mk8d_ocr/table.html' にペーストしてください")
-        
-    else:
-        await ctx.send('エラー')
-        
-"""
-
+                        
 @client.command()
 async def mt(ctx): #ラウンジの集計
     def check(m):

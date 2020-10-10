@@ -125,9 +125,9 @@ async def suse(ctx): #.sの説明
     
     
 @client.command()
-async def fish(ctx2, about = "🐟🐟🐟 使い方 🐟🐟🐟"):
-  help1 = discord.Embed(title=about,color=0xe74c3c,description=".s,.s2: 交流戦募集開始※再び.s .s2することでリセット 英語スタンプ→挙手 ×スタンプ→挙手全へ\n.list <時間>: 指定時間に挙手した人を返す\n.mention <時間>: 指定時間に挙手した人にメンション\n.cal: 即時集計。順位は16進数でも入力可、recallで呼び戻し、endで終了、backで一回分だけ修正可能\n.ran 数字: ランダムに数字出力\n.dev 数字 リスト: 組み分け\n.choose リスト: 選択\n.vote: 匿名アンケート(2択)\n作成者: さかな(@sakana8dx)\nさかなBot導入: https://discord.com/oauth2/authorize?client_id=619351049752543234&permissions=473152&scope=bot")
-  await ctx2.send(embed=help1)       
+async def fish(ctx, about = "🐟🐟🐟 使い方 🐟🐟🐟"):
+  help1 = discord.Embed(title=about,color=0xe74c3c,description=".s: 交流戦募集開始※再び.sすることでリセット 英語スタンプ→の/へ\n.suse: .sの使い方\n.list <時間>: 指定時間に挙手した人の名前\n.mention <時間>: 指定時間に挙手した人にメンション\n.cal: 即時集計。順位は16進数でも入力可、recallで呼び戻し、endで終了、backで一回分だけ修正可能\n.set <数字>: メモ登録\n/memo <数字 or 登録名>: メモ呼び出し\n.ran <数字>: ランダムに数字出力\n.div <数字> <リスト...>: 組み分け\n.choose <リスト...>: 選択\n.vote: 匿名アンケート(2択)\n作成者: さかな(@sakana8dx)\nさかなBot導入: )
+  await ctx.send(embed=help1)       
  
 
 @client.command()
